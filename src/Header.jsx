@@ -1,14 +1,16 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 // import logo from "./assets/logo.png"; 
-import logo from "./assets/logo2.png"; 
+// import logo from "./assets/logo2.png"; 
+import logo from "./assets/logo3.png"; 
+
 
 
 function Header() {
   return (
     <>
-      <header className="-top-40px -left-1/2 sticky z-50">
-        <nav className="bg-[#fefcf0] border-gray-200 w-full lg:px-6 py-2.5 shadow-md">
+      <header className=" sticky z-50">
+        <nav className="bg-[#fefcf0] border-gray-200 w-full lg:px-5 py-2 shadow-md">
           <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <Link to="/">
               <img
