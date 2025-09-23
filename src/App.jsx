@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         element:<Markethub/>
       },
       { 
-        path:"Markethub/liveprice", 
+        path:"Markethub/", 
         element:<LivePrice/> 
       },
       { 

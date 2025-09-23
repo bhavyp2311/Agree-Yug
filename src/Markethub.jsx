@@ -4,10 +4,9 @@ import {Link,NavLink,Outlet } from "react-router-dom";
 
 function Markethub() {
   const navigate = useNavigate();
-  const location = useLocation(); // Get current URL path
-
+  const location = useLocation(); 
   // Determine active tab based on current path
-  const isLivePrice = location.pathname === '/Markethub/liveprice';
+  const isLivePrice = location.pathname === '/Markethub/';
   const isFindBuyers = location.pathname === '/Markethub/findbuyers';
 
   return (
@@ -55,7 +54,7 @@ function Markethub() {
       {/* ================== Toggle Buttons ================== */}
       <section className="p-3 flex justify-around">
         <button
-          onClick={() => navigate("/Markethub/liveprice") }
+          onClick={() => navigate("/Markethub/") }
           className={`w-1/2 py-2 rounded-lg font-medium mr-2 ${isLivePrice ? 'bg-[#0f3300] text-white' : 'bg-[#fff9eb] text-[#0f3300]'}`}
         >
           Live Prices

@@ -45,7 +45,7 @@ export default function FindBuyers() {
           key={idx}
           className="border rounded-xl shadow-sm p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
         >
-          {/* Buyer Info */}
+          {/* ================== Buyer Info ================ */}
           <div>
             <h2 className="text-lg font-semibold">{buyer.name}</h2>
             <p className="text-sm text-gray-600">{buyer.location}</p>
@@ -53,7 +53,7 @@ export default function FindBuyers() {
             <p className="text-sm text-blue-600 mt-1">{buyer.contact}</p>
           </div>
 
-          {/* Status */}
+          {/*================= Status =================*/}
           <span
             className={`px-3 py-1 rounded-full text-xs font-medium ${
               buyer.status === "Active"

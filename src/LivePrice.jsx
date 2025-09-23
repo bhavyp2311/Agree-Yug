@@ -50,7 +50,7 @@ export default function LivePrice() {
     <div>
       <Markethub/>
     <div className="  w-full mx-auto p-4 space-y-4">
-      {/* Price Alert */}
+      {/*================= Price Alert================ */}
       <div className="bg-gradient-to-r from-green-50 to-yellow-50 border border-green-200 rounded-xl shadow-sm p-4 flex items-center justify-between">
         <div>
           <p className="font-medium text-green-700">Price Alert!</p>
@@ -63,7 +63,7 @@ export default function LivePrice() {
         </button>
       </div>
 
-      {/* Crops List */}
+      {/* =============================Crops List ========================== */}
       {crops.map((crop, idx) => (
         <div
           key={idx}
