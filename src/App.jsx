@@ -12,6 +12,10 @@ import Markethub from './Markethub';
 import Community from './Community';
 import Analysis from './Analysis';
 import Login from './Login';
+import LivePrice from './LivePrice';
+import FindBuyers from './FindBuyers';
+
+
 
 const router = createBrowserRouter([
   {
@@ -33,6 +37,14 @@ const router = createBrowserRouter([
       {
         path:"Markethub",
         element:<Markethub/>
+      },
+      { 
+        path:"Markethub/liveprice", 
+        element:<LivePrice/> 
+      },
+      { 
+        path:"Markethub/findbuyers", 
+        element:<FindBuyers/> 
       },
       {
         path:"Community",
