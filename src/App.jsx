@@ -14,6 +14,7 @@ import Analysis from './Analysis';
 import Login from './Login';
 import LivePrice from './LivePrice';
 import FindBuyers from './FindBuyers';
+import "./i18n";
 
 
 
