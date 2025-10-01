@@ -1,9 +1,83 @@
-{
-  "welcome": "Welcome to Agree Yug",
-  "Ai Assistant": "Ai Assistant",
+ {
+   
+  "Ai Assistant": "AI Assistant",
   "Disease Detection": "Disease Detection",
   "Market Hub": "Market Hub",
   "Community": "Community",
+  "Login": "Login",
+  "Logout": "Logout",
   "Home": "Home",
-  "Log in": "Log in"
-}
+  "Profile": "Profile",
+  "Settings": "Settings",
+  "Contact Us": "Contact Us",
+  "About Us": "About Us",
+
+  "Smart Agriculture Revolution": "Smart Agriculture Revolution",
+  "Grow Smarter with AI-Powered Farming": "Grow Smarter with AI-Powered Farming",
+  "Transform your agricultural practices with intelligent insights, real-time market data, and a supportive farming community. Technology that grows with you.": 
+    "Transform your agricultural practices with intelligent insights, real-time market data, and a supportive farming community. Technology that grows with you.",
+  "Start Growing Smarter": "Start Growing Smarter",
+  "Watch Demo": "Watch Demo",
+  "Active Farmers": "Active Farmers",
+  "Avg.Yield increases": "Avg.Yield increases",
+  "Satisfaction Rate": "Satisfaction Rate",
+  "AI-Powered Insights": "AI-Powered Insights",
+  "Smart recommendations tailored to your crops": "Smart recommendations tailored to your crops",
+  "Early identification and treatment suggestions": "Early identification and treatment suggestions",
+  "Real-time prices and profit optimization": "Real-time prices and profit optimization",
+  "Trusted by Farmers Across India": "Trusted by Farmers Across India",
+  "See how FarmWise AI is helping farmers increase yields and reduce risks": "See how FarmWise AI is helping farmers increase yields and reduce risks",
+  
+  "Submit": "Submit",
+  "Cancel": "Cancel",
+  "Save": "Save",
+  "Edit": "Edit",
+  "Delete": "Delete",
+  "Update": "Update",
+  "Next": "Next",
+  "Previous": "Previous",
+  
+
+  "Success": "Success",
+  "Error": "Error",
+  "Warning": "Warning",
+  "Information": "Information",
+  "Loading": "Loading",
+  "Please wait...": "Please wait...",
+  "Form submitted successfully": "Form submitted successfully",
+  "Invalid input": "Invalid input",
+
+  "Crop": "Crop",
+  "Soil": "Soil",
+  "Water": "Water",
+  "Fertilizer": "Fertilizer",
+  "Pesticide": "Pesticide",
+  "Harvest": "Harvest",
+  "Yield": "Yield",
+  "Plant": "Plant",
+  "Seed": "Seed",
+  "Growth": "Growth",
+  "Temperature": "Temperature",
+  "Humidity": "Humidity",
+  "Sunlight": "Sunlight",
+
+  "K+": "K+",
+  "%": "%",
+  "Days": "Days",
+  "Months": "Months",
+  "Years": "Years",
+
+  "Search": "Search",
+  "Filter": "Filter",
+  "Sort": "Sort",
+  "View": "View",
+  "Details": "Details",
+  "Dashboard": "Dashboard",
+  "Analytics": "Analytics",
+  "Reports": "Reports",
+  "Statistics": "Statistics",
+  "Help": "Help",
+  "Feedback": "Feedback",
+  "Language": "Language"
+  }
+
