@@ -37,7 +37,7 @@ function Header() {
               {/* Login Button */}
               <Link to="/Login" className="flex items-center bg-[#f9be09] space-x-4 px-5 py-2 rounded-2xl">
                 <span className="material-symbols-outlined">person</span>
-                <b>Log in</b>
+                <b>{t("Log in")}</b>
               </Link>
 
               {/* Language Dropdown */}
