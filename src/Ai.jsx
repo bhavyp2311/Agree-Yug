@@ -13,6 +13,7 @@ import {
   TrendingUp
 } from "lucide-react";
 
+
 const translations = {
   en: {
     'ai.greeting': "Hello! I'm your AI farming assistant. How can I help you today?",
@@ -52,6 +53,7 @@ const Input = ({ className = "", ...props }) => (
     {...props}
   />
 );
+
 
 const Card = ({ children, className = "", onClick }) => (
   <div
@@ -159,65 +161,63 @@ export default function AIAssistant() {
   }, []);
 
   const handleSendMessage = async (message) => {
-    if (!message.trim()) return;
+  if (!message.trim()) return;
 
-    const userMessage = {
-      id: Date.now().toString(),
-      content: message,
-      sender: 'user',
+  const userMessage = {
+    id: Date.now().toString(),
+    content: message,
+    sender: 'user',
+    timestamp: new Date(),
+  };
+
+  setMessages(prev => [...prev, userMessage]);
+  setInputValue('');
+  setIsTyping(true);
+
+  try {
+    // ================ Python api called here =================
+    const response = await fetch('https://agriiyugchatbot.onrender.com/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message: message,
+        conversation_history: messages.map(m => ({
+          role: m.sender === 'user' ? 'user' : 'assistant',
+          content: m.content
+        }))
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('API request failed');
+    }
+
+    const data = await response.json();
+
+    const aiResponse = {
+      id: (Date.now() + 1).toString(),
+      content: data.response || data.message || 'Sorry, I could not process your request.',
+      sender: 'ai',
       timestamp: new Date(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
-    setInputValue('');
-    setIsTyping(true);
+    setMessages(prev => [...prev, aiResponse]);
+  } catch (error) {
+    console.error('Error calling AI API:', error);
 
-    try {
-      // Call Python AI API
-      // ========================= add python Ai api here !!! =============================
-      const response = await fetch('http://localhost:5000/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: message,
-          conversation_history: messages.map(m => ({
-            role: m.sender === 'user' ? 'user' : 'assistant',
-            content: m.content
-          }))
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('API request failed');
-      }
-
-      const data = await response.json();
-
-      const aiResponse = {
-        id: (Date.now() + 1).toString(),
-        content: data.response || data.message || 'Sorry, I could not process your request.',
-        sender: 'ai',
-        timestamp: new Date(),
-      };
-
-      setMessages(prev => [...prev, aiResponse]);
-    } catch (error) {
-      console.error('Error calling AI API:', error);
-
-      // Fallback to local response if API fails
-      const aiResponse = {
-        id: (Date.now() + 1).toString(),
-        content: "I'm having trouble connecting to the AI server. Please make sure the Python backend is running at http://localhost:5000",
-        sender: 'ai',
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, aiResponse]);
-    } finally {
-      setIsTyping(false);
-    }
-  };
+    const aiResponse = {
+      id: (Date.now() + 1).toString(),
+      content: "⚠️ I'm having trouble connecting to the AI server. Please check if the API is online: https://agriiyugchatbot.onrender.com",
+      sender: 'ai',
+      timestamp: new Date(),
+    };
+    setMessages(prev => [...prev, aiResponse]);
+  } finally {
+    setIsTyping(false);
+  }
+};
 
   const handleVoiceToggle = async () => {
     if (!recognitionRef.current) {
