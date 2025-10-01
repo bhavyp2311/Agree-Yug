@@ -371,7 +371,7 @@ export default function AIAssistant() {
                   onClick={handleVoiceToggle}
                   variant="outline"
                   size="icon"
-                  className={isListening ? "bg-red-500 text-white border-red-500" : "p-3"}
+                  className={isListening ? "bg-red-500 text-grey border-red-500 p-1" : "p-1"}
                   disabled={isTyping}
                 >
                   {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
