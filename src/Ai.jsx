@@ -247,6 +247,37 @@ export default function AIAssistant() {
           </p>
         </div>
 
+        {/* Quick Suggestions */}
+        <div className="space-y-4 p-20  py-10">
+          <div className="flex items-center space-x-2">
+            <Lightbulb className="w-5 h-5 text-green-600" />
+            <h3 className="text-lg font-semibold text-gray-900">{t('ai.quickQuestions')}</h3>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+            {quickSuggestions.map((suggestion, index) => {
+              const Icon = suggestion.icon;
+              return (
+                <Card
+                  key={index}
+                  className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105 "
+                  onClick={() => handleQuickSuggestion(suggestion.text)}
+                >
+                  <div className="flex items-center space-x-4 space-y-4">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm text-green-600 font-medium mb-1">{suggestion.category}</div>
+                      <div className="text-base font-medium text-gray-900">{suggestion.text}</div>
+                    </div>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Chat Container */}
         
         <div className="w-full">
@@ -328,36 +359,7 @@ export default function AIAssistant() {
         </div>
         
 
-        {/* Quick Suggestions */}
-        <div className="space-y-4 p-20  py-10">
-          <div className="flex items-center space-x-2">
-            <Lightbulb className="w-5 h-5 text-green-600" />
-            <h3 className="text-lg font-semibold text-gray-900">{t('ai.quickQuestions')}</h3>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-            {quickSuggestions.map((suggestion, index) => {
-              const Icon = suggestion.icon;
-              return (
-                <Card
-                  key={index}
-                  className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105 "
-                  onClick={() => handleQuickSuggestion(suggestion.text)}
-                >
-                  <div className="flex items-center space-x-4 space-y-4">
-                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm text-green-600 font-medium mb-1">{suggestion.category}</div>
-                      <div className="text-base font-medium text-gray-900">{suggestion.text}</div>
-                    </div>
-                  </div>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
+        
       </div>
     </div>
   );
