@@ -177,7 +177,7 @@ function Home() {
             </div>
 
             {/* Right content: 3 cards */}
-            <div className="py-10 px-8 lg:px-10 w-full lg:w-1/2 flex flex-col gap-4 sm:gap-6">
+            <div className="py-28 px-8 lg:px-10 w-full lg:w-1/2 flex flex-col gap-4 sm:gap-6">
               {[{
                 title: "AI-Powered Insights",
                 desc: "Smart recommendations tailored to your crops",
