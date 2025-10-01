@@ -219,20 +219,24 @@ export default function AIAssistant() {
   }
 };
 
-  const handleVoiceToggle = async () => {
-    if (!recognitionRef.current) {
-      alert('Speech recognition not supported. Use Chrome/Edge/Safari.');
+   const handleVoiceToggle = async () => {
+    
+    if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+      alert("❌ Voice input not supported on this browser/device. Please use Chrome on desktop or Android.");
+      return;
+    }
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      alert("🎤 Voice input is not supported on iOS Safari/Chrome yet. Please type instead.");
       return;
     }
 
-    // 🔒 Check HTTPS or localhost (important for mic access)
     if (window.isSecureContext === false) {
       alert('Microphone requires HTTPS or localhost.');
       return;
     }
 
     try {
-      // 🎤 Request microphone permission before starting
+
       await navigator.mediaDevices.getUserMedia({ audio: true });
 
       if (isListening) {
