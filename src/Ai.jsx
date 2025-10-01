@@ -219,25 +219,28 @@ export default function AIAssistant() {
   }
 };
 
-   const handleVoiceToggle = async () => {
-    
-    if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-      alert("❌ Voice input not supported on this browser/device. Please use Chrome on desktop or Android.");
-      return;
-    }
-    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      alert("🎤 Voice input is not supported on iOS Safari/Chrome yet. Please type instead.");
-      return;
-    }
+   const handleVoiceToggle = () => {
+  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+    alert("❌ Voice input not supported on this browser/device. Please use Chrome on desktop or Android.");
+    return;
+  }
 
-    if (window.isSecureContext === false) {
-      alert('Microphone requires HTTPS or localhost.');
-      return;
-    }
+  // iOS fallback
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    alert("🎤 Voice input not supported on iOS Safari/Chrome yet. Please type instead.");
+    return;
+  }
 
-    try {
+  if (!window.isSecureContext) {
+    alert("Microphone requires HTTPS or localhost.");
+    return;
+  }
 
-      await navigator.mediaDevices.getUserMedia({ audio: true });
+  try {
+    // Directly trigger getUserMedia inside click
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+      // Stop any existing stream tracks immediately to prevent mic block
+      stream.getTracks().forEach(track => track.stop());
 
       if (isListening) {
         recognitionRef.current.stop();
@@ -246,14 +249,12 @@ export default function AIAssistant() {
         recognitionRef.current.start();
         setIsListening(true);
       }
-    } catch (err) {
-      console.error("Mic permission error:", err);
-      alert("Microphone access denied. Please check browser/OS settings.");
-    }
-  };
-  const handleQuickSuggestion = (suggestion) => {
-    handleSendMessage(suggestion);
-  };
+    });
+  } catch (err) {
+    console.error("Mic permission error:", err);
+    alert("Microphone access denied. Please check browser/OS settings.");
+  }
+};
 
   return (
     <div className="min-h-screen  py-3 bg-[#fffcf0]">
