@@ -271,7 +271,7 @@ export default function AIAssistant() {
         </div>
 
         {/* Quick Suggestions */}
-        <div className="space-y-4 p-20  py-10">
+        <div className="space-y-4 p-5  py-10 w-full">
           <div className="flex items-center space-x-2">
             <Lightbulb className="w-5 h-5 text-green-600" />
             <h3 className="text-lg font-semibold text-gray-900">{t('ai.quickQuestions')}</h3>
@@ -291,8 +291,8 @@ export default function AIAssistant() {
                       <Icon className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="text-sm text-green-600 font-medium mb-1">{suggestion.category}</div>
-                      <div className="text-base font-medium text-gray-900">{suggestion.text}</div>
+                      <div className="text-xs text-green-600 font-medium mb-1">{suggestion.category}</div>
+                      <div className="text-sm font-medium text-gray-900">{suggestion.text}</div>
                     </div>
                   </div>
                 </Card>
