@@ -29,10 +29,17 @@ function Header() {
                 onChange={changeLanguage}
                 value={i18n.language}
                 className="px-3 py-1 rounded  text-grey-700 border-transparent bg-[#fefcf0] "
+                
               >
                 <option value="en">English</option>
-                <option value="gu">ગુજરાતી</option>
-                <option value="hi">हिन्दी</option>
+                <option value="gu">Gujarati(ગુજરાતી)</option>
+                <option value="hi">Hindi(हिन्दी)</option>
+                <option value="be">Bengali(বাংলা)</option>
+                <option value="te">Telugu(తెలుగు)</option>
+                <option value="mr">Marathi(मराठी)</option>
+
+
+
               </select>
               {/* Login Button */}
               <Link to="/Login" className="flex items-center bg-[#f9be09] space-x-4 px-5 py-2 rounded-2xl">
