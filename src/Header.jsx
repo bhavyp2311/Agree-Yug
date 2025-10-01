@@ -39,11 +39,12 @@ function Header() {
                 <option value="mr" className="text-center">Marathi(मराठी)</option>
                 <option value="ta" className="text-center">Tamil(தமிழ்)</option>
                 <option value="ka" className="text-center">kannada(ಕನ್ನಡ)</option>
-                <option value="ka" className="text-center">kannada(ಕನ್ನಡ)</option>
+                <option value="ma" className="text-center">Malayalam(മലയാളം)</option>
                 <option value="pu" className="text-center">Punjabi(ਪੰਜਾਬੀ)</option>
                 <option value="od" className="text-center">Odia(ଓଡିଆ)</option>
                 <option value="as" className="text-center">Assamese(অসমীয়া)</option>
                 <option value="ur" className="text-center">Urdu(اردو)</option>
+
 
               </select>
               {/* Login Button */}
