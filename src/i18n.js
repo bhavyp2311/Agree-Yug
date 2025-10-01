@@ -7,6 +7,12 @@ import hi from "./locales/hi/translation.json";
 import be from "./locales/be/translation.json";
 import te from "./locales/te/translation.json";
 import mr from "./locales/mr/translation.json";
+import ta from "./locales/ta/translation.json";
+import ka from "./locales/ka/translation.json";
+import pu from "./locales/pu/translation.json";
+import od from "./locales/od/translation.json";
+import as from "./locales/as/translation.json";
+import ur from "./locales/ur/translation.json";
 
 i18n
   .use(initReactI18next)
@@ -18,8 +24,12 @@ i18n
       be: { translation: be },
       te: { translation: te },
       mr: { translation: mr },
-
-
+      ta: { translation: ta },
+      ka: { translation: ka },
+      pu: { translation: pu },
+      od: { translation: od },
+      as: { translation: as },
+      ur: { translation: ur },
     
     },
     lng: "en", // default language

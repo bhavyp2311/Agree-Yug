@@ -28,17 +28,22 @@ function Header() {
               <select
                 onChange={changeLanguage}
                 value={i18n.language}
-                className="px-3 py-1 rounded  text-grey-700 border-transparent bg-[#fefcf0] "
+                className="px-1 py-1 flex rounded text-grey-700 border-transparent bg-[#fefcf0] text-right"
                 
-              >
-                <option value="en">English</option>
-                <option value="gu">Gujarati(ગુજરાતી)</option>
-                <option value="hi">Hindi(हिन्दी)</option>
-                <option value="be">Bengali(বাংলা)</option>
-                <option value="te">Telugu(తెలుగు)</option>
-                <option value="mr">Marathi(मराठी)</option>
-
-
+              > 
+                <option value="en" className="text-center">English</option>
+                <option value="gu" className="text-center">Gujarati(ગુજરાતી)  </option>
+                <option value="hi" className="text-center">Hindi(हिन्दी)</option>
+                <option value="be" className="text-center">Bengali(বাংলা)</option>
+                <option value="te" className="text-center">Telugu(తెలుగు)</option>
+                <option value="mr" className="text-center">Marathi(मराठी)</option>
+                <option value="ta" className="text-center">Tamil(தமிழ்)</option>
+                <option value="ka" className="text-center">kannada(ಕನ್ನಡ)</option>
+                <option value="ka" className="text-center">kannada(ಕನ್ನಡ)</option>
+                <option value="pu" className="text-center">Punjabi(ਪੰਜਾਬੀ)</option>
+                <option value="od" className="text-center">Odia(ଓଡିଆ)</option>
+                <option value="as" className="text-center">Assamese(অসমীয়া)</option>
+                <option value="ur" className="text-center">Urdu(اردو)</option>
 
               </select>
               {/* Login Button */}
