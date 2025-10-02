@@ -6,7 +6,8 @@ function Markethub() {
   const navigate = useNavigate();
   const location = useLocation(); 
   // Determine active tab based on current path
-  const isLivePrice = location.pathname === '/Markethub/';
+  // const isLivePrice = location.pathname === '/Markethub/';
+  const isLivePrice = location.pathname.startsWith('/Markethub') && !location.pathname.includes('findbuyers');
   const isFindBuyers = location.pathname === '/Markethub/findbuyers';
 
   return (
@@ -54,7 +55,7 @@ function Markethub() {
       {/* ================== Toggle Buttons ================== */}
       <section className="p-3 flex justify-around">
         <button
-          onClick={() => navigate("/Markethub/") }
+          onClick={() => navigate("/Markethub/")||location.pathname === ("/Markethub") }
           className={`w-1/2 py-2 rounded-lg font-medium mr-2 ${isLivePrice ? 'bg-[#0f3300] text-white' : 'bg-[#fff9eb] text-[#0f3300]'}`}
         >
           Live Prices
