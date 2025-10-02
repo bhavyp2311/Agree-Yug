@@ -209,7 +209,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     <div className="w-full mx-auto p-4 space-y-4">
       <Markethub/>
       {/* Price Alert */}
-      {filteredCrops.some(crop => crop.change > 10) && (
+      {/* {filteredCrops.some(crop => crop.change > 10) && (
         <div className="bg-gradient-to-r from-green-50 to-yellow-50 border border-green-200 rounded-xl shadow-sm p-4 flex items-center justify-between">
           <div>
             <p className="font-medium text-green-700">Price Alert!</p>
@@ -226,14 +226,12 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
         </div>
       )}
 
-      {/* Results count */}
       {(searchQuery || filters.demand || filters.state !== 'All States' || filters.commodity !== 'All Commodities') && (
         <div className="text-sm text-gray-600 px-1">
           {filteredCrops.length} {filteredCrops.length === 1 ? 'result' : 'results'} found
         </div>
       )}
 
-      {/* No results message */}
       {filteredCrops.length === 0 && (
         <div className="text-center py-10">
           <div className="text-gray-400 text-5xl mb-4">
@@ -244,7 +242,6 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
         </div>
       )}
 
-      {/* Crops List */}
       {filteredCrops.map((crop, idx) => (
         <div key={crop.name + crop.location} className="border rounded-xl shadow-sm p-4 flex items-center justify-between">
           <div className="space-y-1">
@@ -285,7 +282,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
             </div>
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
