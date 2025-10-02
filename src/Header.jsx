@@ -24,7 +24,7 @@ function Header() {
             </Link>
             
             {/* Right Section: Login + Language Dropdown */}
-            <div className="flex items-center lg:order-2 space-x-4  px-5 py-2 rounded-2xl  ">
+            <div className="flex items-center lg:order-2 space-x-4 flex-wrap  px-1 py-1  rounded-2xl ">
               <select
                 onChange={changeLanguage}
                 value={i18n.language}
@@ -37,9 +37,9 @@ function Header() {
                 <option value="be" className="text-center">Bengali(বাংলা)</option>
                 <option value="te" className="text-center">Telugu(తెలుగు)</option>
                 <option value="mr" className="text-center">Marathi(मराठी)</option>
+                <option value="ma" className="text-center">Malayalam(മലയാളം)</option>
                 <option value="ta" className="text-center">Tamil(தமிழ்)</option>
                 <option value="ka" className="text-center">kannada(ಕನ್ನಡ)</option>
-                <option value="ma" className="text-center">Malayalam(മലയാളം)</option>
                 <option value="pu" className="text-center">Punjabi(ਪੰਜਾਬੀ)</option>
                 <option value="od" className="text-center">Odia(ଓଡିଆ)</option>
                 <option value="as" className="text-center">Assamese(অসমীয়া)</option>
@@ -48,11 +48,13 @@ function Header() {
 
               </select>
               {/* Login Button */}
-              <Link to="/Login" className="flex items-center bg-[#f9be09] space-x-4 px-5 py-2 rounded-2xl">
+              <section className="py-1">
+                <Link to="/Login" className="flex items-center bg-[#f9be09] space-x-4 px-5 py-2 rounded-2xl">
                 <span className="material-symbols-outlined">person</span>
                 <b>{t("Log in")}</b>
               </Link>
 
+              </section>
               {/* Language Dropdown */}
               
             </div>
