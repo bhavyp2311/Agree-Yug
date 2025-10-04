@@ -39,7 +39,7 @@ function Header() {
                 <select
                   onChange={changeLanguage}
                   value={i18n.language}
-                  className="px-2 py-1 rounded-xl text-gray-700 border border-gray-300 bg-[#fffcf0]"
+                  className="px-2 py-1 rounded-xl text-gray-700 border w-20 border-gray-300 bg-[#fffcf0]"
                 > 
                   <option value="en">English</option>
                   <option value="gu">Gujarati(ગુજરાતી)</option>
@@ -56,7 +56,7 @@ function Header() {
                   <option value="ur">Urdu(اردو)</option>
                 </select>
 
-                <Link to="/Login" className="flex items-center bg-[#f9be09] space-x-2 px-4 py-2 rounded-2xl">
+                <Link to="/Login" className="flex items-center  bg-[#f9be09] space-x-2 px-4 py-2 rounded-2xl">
                   <span className="material-symbols-outlined">person</span>
                   <b>{t("Log in")}</b>
                 </Link>
@@ -231,7 +231,7 @@ export default Header;
 
 //   return (
 //     <>
-//       <header className="sticky z-50 top-0">
+//       <header className=" z-50 top-0">
 //         <nav className="bg-[#fefcf0] border-gray-200 w-full lg:px-5 py-2 shadow-md">
 //           <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mx-auto max-w-screen-xl px-4">
 
@@ -306,11 +306,11 @@ export default Header;
 //                 </NavLink>
 //               </li>
 //             </ul>
-//             <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-4 mb-2 py-2 lg:mb-0">
+//             <div className="flex flex-col lg:flex-row lg:items-center lg:space-x-4 mb-2 py-2 lg:mb-0 text-center">
 //               <select
 //                 onChange={changeLanguage}
 //                 value={i18n.language}
-//                 className="px-2 py-2  rounded-xl text-gray-700 border border-gray-300 bg-[#fffcf0] mb-2 lg:mb-0"
+//                 className="px-2 py-2  rounded-xl text-gray-700 border border-gray-300 bg-[#fffcf0] mb-2 lg:mb-0 text-center"
 //               >
 //                 <option value="en">English</option>
 //                 <option value="gu">Gujarati(ગુજરાતી)</option>
@@ -327,7 +327,7 @@ export default Header;
 //                 <option value="ur">Urdu(اردو)</option>
 //               </select>
 
-//               <Link to="/Login" className="flex items-center bg-[#f9be09] space-x-2 px-4 py-2 rounded-2xl">
+//               <Link to="/Login" className="flex justify-center bg-[#f9be09] space-x-2 px-4 py-2 rounded-2xl">
 //                 <span className="material-symbols-outlined">person</span>
 //                 <b>{t("Log in")}</b>
 //               </Link>
