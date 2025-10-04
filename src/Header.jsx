@@ -24,11 +24,11 @@ function Header() {
     <>
       <header className="sticky z-50">
         <nav className="bg-[#fefcf0] border-gray-200 w-full lg:px-5 py-2 shadow-md">
-          <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4">
+          <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl ">
             
             {/* Logo */}
             <Link to="/">
-              <img src={logo} alt="Logo" className="mr-3 h-12" />
+              <img src={logo} alt="Logo" className="mr-2 h-12" />
             </Link>
 
             {/* Right Section: Login + Language + Hamburger */}
@@ -39,7 +39,7 @@ function Header() {
                 <select
                   onChange={changeLanguage}
                   value={i18n.language}
-                  className="px-2 py-1 rounded-xl text-gray-700 border w-20 border-gray-300 bg-[#fffcf0]"
+                  className=" py-1 px-1 rounded-xl text-gray-700 border w-20 border-gray-300 bg-[#fffcf0]"
                 > 
                   <option value="en">English</option>
                   <option value="gu">Gujarati(ગુજરાતી)</option>
@@ -56,7 +56,7 @@ function Header() {
                   <option value="ur">Urdu(اردو)</option>
                 </select>
 
-                <Link to="/Login" className="flex items-center  bg-[#f9be09] space-x-2 px-4 py-2 rounded-2xl">
+                <Link to="/Login" className="flex items-center  bg-[#f9be09] space-x-2 px-2 py-2 rounded-2xl">
                   <span className="material-symbols-outlined">person</span>
                   <b>{t("Log in")}</b>
                 </Link>
