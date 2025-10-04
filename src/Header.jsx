@@ -39,7 +39,7 @@ function Header() {
                 <select
                   onChange={changeLanguage}
                   value={i18n.language}
-                  className=" py-1 px-1 rounded-xl text-gray-700 border w-20 border-gray-300 bg-[#fffcf0]"
+                  className=" py-2 px-1 rounded-xl text-gray-700 border w-20 border-gray-300 bg-[#fffcf0]"
                 > 
                   <option value="en">English</option>
                   <option value="gu">Gujarati(ગુજરાતી)</option>
