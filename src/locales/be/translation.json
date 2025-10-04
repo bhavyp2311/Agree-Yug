@@ -78,6 +78,27 @@
   "Feedback": "প্রতিক্রিয়া",
   "Language": "ভাষা",
   "Log in":"লগ ইন",
-  "Market Insights" : "বাজার সম্পর্কে গভীর ধারণা"
+  "Market Insights" : "বাজার সম্পর্কে গভীর ধারণা",
+"AI Farming Assistant": "এআই কৃষি সহায়ক",
+  "Smart Farming Assistant": "স্মার্ট কৃষি সহায়ক",
+  "Get instant answers to your farming questions with AI-powered insights": "এআই দ্বারা পরিচালিত জ্ঞানের মাধ্যমে আপনার কৃষি প্রশ্নগুলির তাৎক্ষণিক উত্তর পান",
+  "Quick Questions": "দ্রুত প্রশ্ন",
+
+  "Planting": "রোপণ",
+  "Irrigation": "সেচ",
+  "Fertilization": "সার প্রয়োগ",
+  "Market": "বাজার",
+
+  "When should I plant tomatoes?": "আমি কখন টমেটো রোপণ করব?",
+  "How much water do my crops need?": "আমার ফসলের জন্য কতটা পানি প্রয়োজন?",
+  "Best fertilizer for wheat season?": "গমের মৌসুমের জন্য সেরা সার কোনটি?",
+  "Current market prices for rice": "চালের বর্তমান বাজার মূল্য",
+
+  "AI Assistant": "এআই সহায়ক",
+  "Listening": "শুনছে...",
+  "Ask me anything about farming...": "কৃষি সম্পর্কে যেকোনো কিছু জিজ্ঞাসা করুন...",
+  "Sorry, I could not process your request.": "দুঃখিত, আমি আপনার অনুরোধটি প্রক্রিয়া করতে পারিনি।",
+  "Trouble connecting to AI server.": "এআই সার্ভারের সাথে সংযোগ করতে সমস্যা হচ্ছে।",
+  "Hello! I'm your AI farming assistant. How can I help you today?": "হ্যালো! আমি আপনার এআই কৃষি সহায়ক। আজ আমি কীভাবে আপনাকে সাহায্য করতে পারি?"
 
 }

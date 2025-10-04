@@ -91,7 +91,28 @@
   "planting": "When should I plant tomatoes?",
   "irrigation": "How much water do my crops need?",
   "fertilization": "Best fertilizer for wheat season?",
-  "market": "Current market prices for rice"
+  "market": "Current market prices for rice",
+   "AI Farming Assistant": "AI Farming Assistant",
+  "Smart Farming Assistant": "Smart Farming Assistant",
+  "Get instant answers to your farming questions with AI-powered insights": "Get instant answers to your farming questions with AI-powered insights",
+  "Quick Questions": "Quick Questions",
+  
+  "Planting": "Planting",
+  "Irrigation": "Irrigation",
+  "Fertilization": "Fertilization",
+  "Market": "Market",
+
+  "When should I plant tomatoes?": "When should I plant tomatoes?",
+  "How much water do my crops need?": "How much water do my crops need?",
+  "Best fertilizer for wheat season?": "Best fertilizer for wheat season?",
+  "Current market prices for rice": "Current market prices for rice",
+
+  "AI Assistant": "AI Assistant",
+  "Listening": "Listening...",
+  "Ask me anything about farming...": "Ask me anything about farming...",
+  "Sorry, I could not process your request.": "Sorry, I could not process your request.",
+  "Trouble connecting to AI server.": "Trouble connecting to AI server.",
+  "Hello! I'm your AI farming assistant. How can I help you today?": "Hello! I'm your AI farming assistant. How can I help you today?"
 
   }
 

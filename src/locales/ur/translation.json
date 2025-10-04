@@ -78,6 +78,27 @@
   "Feedback": "رائے",
   "Language": "زبان",
   "Log in":"لاگ اِن",
-  "Market Insights" : "مارکیٹ بصیرت"
+  "Market Insights" : "مارکیٹ بصیرت",
+  "AI Farming Assistant": "اے آئی زرعی معاون",
+  "Smart Farming Assistant": "سمارٹ زرعی معاون",
+  "Get instant answers to your farming questions with AI-powered insights": "اے آئی کی مدد سے اپنے زرعی سوالات کے فوری جوابات حاصل کریں",
+  "Quick Questions": "فوری سوالات",
+
+  "Planting": "پودا لگانا",
+  "Irrigation": "آبپاشی",
+  "Fertilization": "کھاد کاری",
+  "Market": "بازار",
+
+  "When should I plant tomatoes?": "میں ٹماٹر کب لگاؤں؟",
+  "How much water do my crops need?": "میری فصلوں کو کتنا پانی چاہیے؟",
+  "Best fertilizer for wheat season?": "گندم کے موسم کے لیے بہترین کھاد کون سی ہے؟",
+  "Current market prices for rice": "چاول کی موجودہ مارکیٹ قیمت",
+
+  "AI Assistant": "اے آئی معاون",
+  "Listening": "سن رہا ہے...",
+  "Ask me anything about farming...": "زرعی بارے میں کچھ بھی پوچھیں...",
+  "Sorry, I could not process your request.": "معذرت، میں آپ کی درخواست پراسیس نہیں کر سکا۔",
+  "Trouble connecting to AI server.": "اے آئی سرور سے رابطہ کرنے میں مسئلہ۔",
+  "Hello! I'm your AI farming assistant. How can I help you today?": "ہیلو! میں آپ کا اے آئی زرعی معاون ہوں۔ آج میں آپ کی کس طرح مدد کر سکتا ہوں؟"
 
 }

@@ -90,5 +90,26 @@
   "planting": "मैं टमाटर कब लगाऊँ?",
   "irrigation": "मेरी फसलों को कितने पानी की आवश्यकता है?",
   "fertilization": "गेहूँ के मौसम के लिए सबसे अच्छा खाद कौन सा है?",
-  "market": "चावल के वर्तमान बाजार भाव"
+  "market": "चावल के वर्तमान बाजार भाव",
+  "AI Farming Assistant": "एआई कृषि सहायक",
+  "Smart Farming Assistant": "स्मार्ट खेती सहायक",
+  "Get instant answers to your farming questions with AI-powered insights": "एआई-संचालित जानकारी के साथ अपने खेती से जुड़े सवालों के तुरंत जवाब पाएं",
+  "Quick Questions": "त्वरित प्रश्न",
+
+  "Planting": "रोपण",
+  "Irrigation": "सिंचाई",
+  "Fertilization": "उर्वरीकरण",
+  "Market": "बाजार",
+
+  "When should I plant tomatoes?": "मुझे टमाटर कब लगाना चाहिए?",
+  "How much water do my crops need?": "मेरी फसलों को कितने पानी की आवश्यकता है?",
+  "Best fertilizer for wheat season?": "गेहूं के मौसम के लिए सबसे अच्छा उर्वरक कौन सा है?",
+  "Current market prices for rice": "चावल के वर्तमान बाजार भाव",
+
+  "AI Assistant": "एआई सहायक",
+  "Listening": "सुन रहा है...",
+  "Ask me anything about farming...": "खेती के बारे में कुछ भी पूछें...",
+  "Sorry, I could not process your request.": "क्षमा करें, मैं आपका अनुरोध संसाधित नहीं कर सका।",
+  "Trouble connecting to AI server.": "एआई सर्वर से जुड़ने में समस्या हो रही है।",
+  "Hello! I'm your AI farming assistant. How can I help you today?": "नमस्ते! मैं आपका एआई कृषि सहायक हूँ। आज मैं आपकी कैसे मदद कर सकता हूँ?"
 }

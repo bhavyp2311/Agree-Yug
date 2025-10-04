@@ -78,7 +78,28 @@
   "Feedback": "പ്രതികരണം",
   "Language": "ഭാഷ",
   "Log in":"ലോഗ് ഇൻ",
-  "Market Insights" : "വിപണിയെ കുറിച്ചുള്ള ആഴത്തിലുള്ള അവബോധം"
+  "Market Insights" : "വിപണിയെ കുറിച്ചുള്ള ആഴത്തിലുള്ള അവബോധം",
+  "AI Farming Assistant": "എഐ കൃഷി സഹായി",
+  "Smart Farming Assistant": "സ്മാർട്ട് കൃഷി സഹായി",
+  "Get instant answers to your farming questions with AI-powered insights": "എഐ നിയന്ത്രിത അറിവിലൂടെ നിങ്ങളുടെ കൃഷി ചോദ്യങ്ങൾക്ക് ഉടൻ മറുപടി നേടുക",
+  "Quick Questions": "ത്വരിത ചോദ്യങ്ങൾ",
+
+  "Planting": "തൈകൾ നടൽ",
+  "Irrigation": "ജലസേചനം",
+  "Fertilization": "ഉരവരക ഉപയോഗം",
+  "Market": "മാർക്കറ്റ്",
+
+  "When should I plant tomatoes?": "ഞാൻ ടൊമാറ്റോ എപ്പോഴാണ് നടണം നടത്തേണ്ടത്?",
+  "How much water do my crops need?": "എൻ്റെ വിളകൾക്ക് എത്ര വെള്ളം ആവശ്യമാണ്?",
+  "Best fertilizer for wheat season?": "ഗോധുമക്കാലത്തിനുള്ള മികച്ച ഉരവരകം ഏത്?",
+  "Current market prices for rice": "അന്നത്തിന്റെ നിലവിലെ മാർക്കറ്റ് വില",
+
+  "AI Assistant": "എഐ സഹായി",
+  "Listening": "കേട്ടുകൊണ്ടിരിക്കുന്നു...",
+  "Ask me anything about farming...": "കൃഷിയെക്കുറിച്ച് ഏതുമെങ്കിലും ചോദിക്കുക...",
+  "Sorry, I could not process your request.": "ക്ഷമിക്കണം, നിങ്ങളുടെ അഭ്യർത്ഥന പ്രോസസ് ചെയ്യാൻ കഴിയാതെ പോയി.",
+  "Trouble connecting to AI server.": "എഐ സർവർക്ക് കണക്ട് ചെയ്യുന്നതിൽ പ്രശ്നം.",
+  "Hello! I'm your AI farming assistant. How can I help you today?": "ഹലോ! ഞാൻ നിങ്ങളുടെ എഐ കൃഷി സഹായി. ഇന്ന് ഞാൻ എങ്ങനെ സഹായിക്കാമെന്ന് പറയൂ?"
 
 
 }

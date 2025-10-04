@@ -78,6 +78,28 @@
   "Feedback": "ప్రతిక్రియా",
   "Language": "భాష",
   "Log in":"లాగ్ ఇన్",
-  "Market Insights" : "మార్కెట్ లోతైన అవగాహన"
+  "Market Insights" : "మార్కెట్ లోతైన అవగాహన",
+  
+  "AI Farming Assistant": "ఏఐ వ్యవసాయ సహాయకుడు",
+  "Smart Farming Assistant": "స్మార్ట్ వ్యవసాయ సహాయకుడు",
+  "Get instant answers to your farming questions with AI-powered insights": "ఏఐ ఆధారిత జ్ఞానం ద్వారా మీ వ్యవసాయ ప్రశ్నలకు తక్షణమే సమాధానాలు పొందండి",
+  "Quick Questions": "తక్షణ ప్రశ్నలు",
+
+  "Planting": "పంటలు నాటడం",
+  "Irrigation": "సిరులు",
+  "Fertilization": "ఎరువుల వినియోగం",
+  "Market": "మార్కెట్",
+
+  "When should I plant tomatoes?": "టమోటాలు ఎప్పుడు నాటాలి?",
+  "How much water do my crops need?": "నా పంటలకు ఎంత నీరు అవసరం?",
+  "Best fertilizer for wheat season?": "గోధుమ పంటకు ఉత్తమ ఎరువు ఏది?",
+  "Current market prices for rice": "అన్నానికి ప్రస్తుత మార్కెట్ ధర",
+
+  "AI Assistant": "ఏఐ సహాయకుడు",
+  "Listening": "వినబడుతోంది...",
+  "Ask me anything about farming...": "వ్యవసాయంపై ఏదైనా అడగండి...",
+  "Sorry, I could not process your request.": "క్షమించండి, మీ అభ్యర్థనను ప్రాసెస్ చేయలేకపోయాము.",
+  "Trouble connecting to AI server.": "ఏఐ సర్వర్‌తో కనెక్ట్ కావడంలో సమస్య.",
+  "Hello! I'm your AI farming assistant. How can I help you today?": "హలో! నేను మీ ఏఐ వ్యవసాయ సహాయకుడు. నేను మీకు ఈరోజు ఎలా సహాయపడగలను?"
 
 }

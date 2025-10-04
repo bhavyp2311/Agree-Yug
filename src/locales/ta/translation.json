@@ -78,6 +78,28 @@
   "Feedback": "கருத்து",
   "Language": "மொழி",
   "Log in":"லாக் இன்",
-  "Market Insights" : "சந்தையைப் பற்றிய ஆழ்ந்த அறிவு"
+  "Market Insights" : "சந்தையைப் பற்றிய ஆழ்ந்த அறிவு",
+
+  "AI Farming Assistant": "ஏஐ விவசாய உதவியாளர்",
+  "Smart Farming Assistant": "ஸ்மார்ட் விவசாய உதவியாளர்",
+  "Get instant answers to your farming questions with AI-powered insights": "ஏஐ சக்தியால் உங்கள் விவசாயக் கேள்விகளுக்கு உடனடி பதில்களைப் பெறுங்கள்",
+  "Quick Questions": "விரைவு கேள்விகள்",
+
+  "Planting": "நட்டல்",
+  "Irrigation": "பாசனம்",
+  "Fertilization": " உரம் பயன்",
+  "Market": "சந்தை",
+
+  "When should I plant tomatoes?": "தக்காளி நான் எப்போது நட்டல் செய்ய வேண்டும்?",
+  "How much water do my crops need?": "என் பயிர்களுக்கு எவ்வளவு தண்ணீர் வேண்டும்?",
+  "Best fertilizer for wheat season?": "கோதுமை பருவத்திற்கு சிறந்த உரம் எது?",
+  "Current market prices for rice": "அரிசியின் தற்போதைய சந்தை விலை",
+
+  "AI Assistant": "ஏஐ உதவியாளர்",
+  "Listening": "கேட்கப்படுகிறது...",
+  "Ask me anything about farming...": "விவசாயம் குறித்து எதையும் கேளுங்கள்...",
+  "Sorry, I could not process your request.": "மன்னிக்கவும், உங்கள் கோரிக்கையை செயல்படுத்த முடியவில்லை.",
+  "Trouble connecting to AI server.": "ஏஐ சர்வருடன் இணைக்க பிரச்சனை.",
+  "Hello! I'm your AI farming assistant. How can I help you today?": "வணக்கம்! நான் உங்கள் ஏஐ விவசாய உதவியாளர். இன்று நான் உங்களுக்கு எப்படி உதவலாம்?"
 
 }
