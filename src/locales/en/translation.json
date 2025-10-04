@@ -80,7 +80,18 @@
   "Feedback": "Feedback",
   "Language": "Language",
   "Log in":"Log in",
-  "Market Insights" : "Market Insights"
+  "Market Insights" : "Market Insights",
+  "header": "AI Farming Assistant",
+  "title": "Smart Farming Guidance",
+  "subtitle": "Ask questions about crops, weather, irrigation, fertilizers, and get instant advice.",
+  "greeting": "Hello! I'm your AI farming assistant. How can I help you today?",
+  "quickQuestions": "Quick Questions",
+  "placeholder": "Type your question here...",
+  "listening": "Listening...",
+  "planting": "When should I plant tomatoes?",
+  "irrigation": "How much water do my crops need?",
+  "fertilization": "Best fertilizer for wheat season?",
+  "market": "Current market prices for rice"
 
   }
 
