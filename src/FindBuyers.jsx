@@ -1,3 +1,4 @@
+// FindBuyers.jsx
 import React from "react";
 import Markethub from "./Markethub";
 
@@ -35,7 +36,7 @@ export default function FindBuyers() {
 
   return (
     <div>
-      <Markethub/> 
+      {/* <Markethub/>  */}
     <div className="w-full mx-auto p-6 space-y-4">
       
       <h1 className="text-2xl font-bold text-gray-800 mb-4">Find Buyers</h1>

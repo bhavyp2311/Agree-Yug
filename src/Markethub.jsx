@@ -1,5 +1,11 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { ArrowUpRight, ArrowDownRight, Minus } from "lucide-react";
+import FindBuyers from './FindBuyers';
+import { useTranslation } from "react-i18next";
+
+
+// function Home() {
+//   const { t } = useTranslation();
 
 // ==================== Filter Modal Component ====================
 function FilterModal({ isOpen, onClose, filters, setFilters, onApply }) {
@@ -166,29 +172,48 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     'default': ['Local', 'Hybrid', 'Standard']
   };
 
-  // Fetch price from API
-  const fetchCommodityPrice = async (state, commodity, district = '') => {
-    try {
-      const response = await fetch('https://commodity-price-api.onrender.com/predict', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ state, commodity, district })
-      });
-      
-      const data = await response.json();
-      
-      if (data.success && data.prediction) {
-        return {
-          priceNum: data.prediction.per_quintal,
-          price: `₹${Math.round(data.prediction.per_quintal).toLocaleString('en-IN')}`,
-          unit: '/quintal'
-        };
+  // Fetch price from API with retry logic
+  const fetchCommodityPrice = async (state, commodity, district = '', retries = 2) => {
+    for (let attempt = 0; attempt <= retries; attempt++) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        
+        const response = await fetch('https://commodity-price-api.onrender.com/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ state, commodity, district }),
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.success && data.prediction && data.prediction.per_quintal) {
+          return {
+            priceNum: data.prediction.per_quintal,
+            price: `₹${Math.round(data.prediction.per_quintal).toLocaleString('en-IN')}`,
+            unit: '/quintal'
+          };
+        }
+        
+        console.warn(`Invalid data format for ${commodity} in ${state}:`, data);
+        return null;
+      } catch (err) {
+        console.error(`API Error (attempt ${attempt + 1}/${retries + 1}) for ${commodity} in ${state}:`, err.message);
+        if (attempt === retries) {
+          return null;
+        }
+        // Wait before retry (exponential backoff)
+        await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
       }
-      return null;
-    } catch (err) {
-      console.error('API Error:', err);
-      return null;
     }
+    return null;
   };
 
   // Generate random change percentage
@@ -211,8 +236,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     }
   };
 
-  // Load initial commodities (Jharkhand + Seasonal)
-  // Load initial commodities (Jharkhand + Seasonal)
+  // Load initial commodities from MULTIPLE states
   const loadInitialCrops = async () => {
     setLoading(true);
     setError(null);
@@ -220,41 +244,70 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     try {
       const season = getCurrentSeason();
       const seasonalCrops = seasonalCommodities[season];
-      const initialCrops = [];
+      // const initialStates = ['Jharkhand', 'Maharashtra', 'Punjab', 'Gujarat'];
+      const initialStates = ['Jharkhand', 'Maharashtra', 'Punjab', 'Haryana', 'Uttar Pradesh', 'Madhya Pradesh', 'Gujarat', 'Rajasthan', 'Karnataka', 'Tamil Nadu','Andhra Pradesh', 'West Bengal', 'Bihar', 'Odisha', 'Kerala'];
+
+      const demands = ['High', 'High', 'Medium'];
       
       console.log('Loading initial crops for season:', season);
       console.log('Seasonal commodities:', seasonalCrops);
       
-      // Load first 6 seasonal commodities from Jharkhand with High demand
-      for (let i = 0; i < Math.min(6, seasonalCrops.length); i++) {
-        const commodity = seasonalCrops[i];
-        const types = commodityTypes[commodity] || commodityTypes['default'];
-        const type = types[0];
-        
-        console.log(`Fetching price for: ${commodity} in Jharkhand`);
-        const priceData = await fetchCommodityPrice('Jharkhand', commodity, 'Ranchi');
-        
-        console.log(`Price data for ${commodity}:`, priceData);
-        
-        if (priceData) {
-          initialCrops.push({
-            name: commodity,
-            type: type,
-            demand: 'High',
-            location: 'Ranchi Mandi',
-            state: 'Jharkhand',
-            time: generateTime(),
-            ...priceData,
-            change: generateChange()
-          });
-        }
-      }
+      // Create promises for seasonal commodities from MULTIPLE states
+      const promises = [];
       
-      console.log('Total crops loaded:', initialCrops.length);
+      // For each seasonal crop, fetch from 2-3 different states
+      seasonalCrops.forEach((commodity) => {
+        const types = commodityTypes[commodity] || commodityTypes['default'];
+        
+        // Select 2 random states for this commodity
+        const selectedStates = initialStates
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 2);
+        
+        selectedStates.forEach((state, idx) => {
+          const type = types[idx % types.length];
+          const demand = demands[idx % demands.length];
+          
+          promises.push(
+            fetchCommodityPrice(state, commodity)
+              .then(priceData => {
+                if (priceData) {
+                  console.log(`✓ Fetched ${commodity} from ${state}`);
+                  return {
+                    name: commodity,
+                    type: type,
+                    demand: demand,
+                    location: `${state} Mandi`,
+                    state: state,
+                    time: generateTime(),
+                    ...priceData,
+                    change: generateChange()
+                  };
+                }
+                return null;
+              })
+              .catch(err => {
+                console.error(`✗ Failed ${commodity} from ${state}:`, err);
+                return null;
+              })
+          );
+        });
+      });
+      
+      console.log(`Fetching ${promises.length} commodity-state combinations...`);
+      
+      // Wait for all promises to resolve
+      const results = await Promise.all(promises);
+      const initialCrops = results.filter(crop => crop !== null);
+      
+      console.log('✓ Total crops loaded:', initialCrops.length);
+      console.log('✗ Failed crops:', promises.length - initialCrops.length);
       
       // If no crops loaded, show error
       if (initialCrops.length === 0) {
         setError('Unable to fetch commodity prices. Please check your API connection.');
+      } else {
+        console.log(`Successfully loaded data from states:`, [...new Set(initialCrops.map(c => c.state))]);
       }
       
       setCrops(initialCrops);
@@ -269,42 +322,55 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
   
   // Load more random commodities
   const loadMoreCrops = async () => {
-    if (loading || !hasMore || initialLoad) return;
+    if (loading || !hasMore) return;
     
+    console.log('Loading more crops...');
     setLoading(true);
-    const newCrops = [];
+    
     const allCommodities = Object.values(seasonalCommodities).flat();
     const uniqueCommodities = [...new Set(allCommodities)];
+    const demands = ['High', 'High', 'Medium', 'Medium', 'Low'];
     
-    // Load 4 random state-commodity combinations
-    for (let i = 0; i < 4; i++) {
+    // Create 6 parallel fetch promises (increased from 4)
+    const promises = Array.from({ length: 6 }, async () => {
       const randomState = allStates[Math.floor(Math.random() * allStates.length)];
       const randomCommodity = uniqueCommodities[Math.floor(Math.random() * uniqueCommodities.length)];
       const types = commodityTypes[randomCommodity] || commodityTypes['default'];
       const type = types[Math.floor(Math.random() * types.length)];
-      const demands = ['High', 'High', 'Medium', 'Medium', 'Low'];
       
-      const priceData = await fetchCommodityPrice(randomState, randomCommodity);
-      
-      if (priceData) {
-        newCrops.push({
-          name: randomCommodity,
-          type: type,
-          demand: demands[Math.floor(Math.random() * demands.length)],
-          location: `${randomState} Mandi`,
-          state: randomState,
-          time: generateTime(),
-          ...priceData,
-          change: generateChange()
-        });
+      try {
+        const priceData = await fetchCommodityPrice(randomState, randomCommodity);
+        
+        if (priceData) {
+          console.log(`✓ Loaded more: ${randomCommodity} from ${randomState}`);
+          return {
+            name: randomCommodity,
+            type: type,
+            demand: demands[Math.floor(Math.random() * demands.length)],
+            location: `${randomState} Mandi`,
+            state: randomState,
+            time: generateTime(),
+            ...priceData,
+            change: generateChange()
+          };
+        }
+      } catch (err) {
+        console.error(`✗ Failed to fetch ${randomCommodity} from ${randomState}:`, err);
       }
-    }
+      return null;
+    });
+    
+    const results = await Promise.all(promises);
+    const newCrops = results.filter(crop => crop !== null);
+    
+    console.log(`✓ Added ${newCrops.length} more crops. Total: ${crops.length + newCrops.length}`);
     
     setCrops(prev => [...prev, ...newCrops]);
     setLoading(false);
     
-    // Stop loading more after 20 items
-    if (crops.length + newCrops.length >= 20) {
+    // Stop loading more after 50 items
+    if (crops.length + newCrops.length >= 50) {
+      console.log('Reached maximum crops limit (50)');
       setHasMore(false);
     }
   };
@@ -341,14 +407,20 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
   // Infinite scroll handler
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && !initialLoad) {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const clientHeight = document.documentElement.clientHeight;
+      
+      // Trigger when user scrolls to bottom 500px
+      if (scrollHeight - scrollTop - clientHeight < 500 && !loading && hasMore && !initialLoad) {
+        console.log('Scroll triggered - loading more crops');
         loadMoreCrops();
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [crops, loading, hasMore, initialLoad]);
+  }, [loading, hasMore, initialLoad, crops.length]);
 
   // Initial load
   useEffect(() => {
@@ -376,6 +448,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
       {error && (
         <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-center">
           <p className="text-red-700 font-medium">Failed to load prices</p>
+          <p className="text-red-600 text-sm mt-1">{error}</p>
           <button 
             onClick={loadInitialCrops}
             className="mt-2 text-red-600 underline text-sm"
@@ -406,7 +479,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
         <div className="text-center py-20">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#0f3300] border-t-transparent mb-4"></div>
           <p className="text-gray-600 font-medium">Loading seasonal commodities...</p>
-          <p className="text-gray-500 text-sm mt-2">Fetching live prices from Jharkhand</p>
+          <p className="text-gray-500 text-sm mt-2">Fetching live prices from multiple states</p>
         </div>
       )}
 
@@ -506,8 +579,9 @@ function Markethub() {
       </section>
       <hr className="bg-[#fff9eb] h-0.5" />
 
+
       {/* ==================== Search & Filter ==================== */}
-      <section className='p-3'>      
+       <section className='p-3'>      
         <div className="relative w-full flex">
           <section className="absolute  p-3  text-gray-500">
             <span class="material-symbols-outlined">search</span>
@@ -594,16 +668,18 @@ function Markethub() {
 
       {/* ==================== Conditional Views ==================== */}
       {currentView === 'liveprice' && (
-        <LivePrice filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters) + searchQuery}/>
+        // <LivePrice filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters) + searchQuery}/>
+        <LivePrice filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters)} />
+
       )}
       
       {currentView === 'findbuyers' && (
-        <div className="p-4 text-center text-gray-500">
-          Find Buyers section coming soon...
-        </div>
+        // <FindBuyers filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters) + searchQuery}/>
+        <FindBuyers filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters)}/>
+
       )}
     </div>
   );
 }
-
+// }
 export default Markethub;

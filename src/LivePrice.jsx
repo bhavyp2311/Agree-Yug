@@ -1,3 +1,4 @@
+// LivePrice.jsx
 import React, { useState, useMemo } from 'react';
 import { ArrowUpRight, ArrowDownRight, Minus } from "lucide-react";
 import Markethub from './Markethub';
@@ -16,43 +17,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
       priceNum: 2150,
       unit: "/quintal",
       change: 2.5,
-    },
-    {
-      name: "Wheat",
-      type: "HD-2967",
-      demand: "Medium",
-      location: "Punjab Mandi",
-      state: "Punjab",
-      time: "1 hour ago",
-      price: "₹1,890",
-      priceNum: 1890,
-      unit: "/quintal",
-      change: -1.2,
-    },
-    {
-      name: "Tomato",
-      type: "Hybrid",
-      demand: "High",
-      location: "Mumbai Mandi",
-      state: "Maharashtra",
-      time: "30 min ago",
-      price: "₹25",
-      priceNum: 25,
-      unit: "/kg",
-      change: 15.3,
-    },
-    {
-      name: "Onion",
-      type: "Red",
-      demand: "Medium",
-      location: "Nashik Mandi",
-      state: "Maharashtra",
-      time: "45 min ago",
-      price: "₹18",
-      priceNum: 18,
-      unit: "/kg",
-      change: 0,
-    },
+    }
   ]);
 
   // Filter and search logic
@@ -165,5 +130,4 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     </div>
   );
 }
-
-export default LivePrice;
+export default LivePrice;   
