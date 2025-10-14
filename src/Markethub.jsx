@@ -8,26 +8,7 @@ import { useTranslation } from "react-i18next";
   const [localFilters, setLocalFilters] = useState(filters);
   const { t,i18n } = useTranslation();
 
-
-  // const indianStates = [
-  //   t('All States'), t('Andhra Pradesh'), t('Arunachal Pradesh'), t('Assam'), t('Bihar'), t('Chhattisgarh'),
-  //   t('Goa'), 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
-  //   'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram',
-  //   'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
-  //   'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Delhi'
-  // ];
-
-  // const commodities = [
-  //   'All Commodities', 'Rice', 'Wheat', 'Maize', 'Bajra', 'Jowar', 'Barley',
-  //   'Cotton', 'Sugarcane', 'Jute', 'Tea', 'Coffee', 'Rubber',
-  //   'Potato', 'Onion', 'Tomato', 'Cabbage', 'Cauliflower',
-  //   'Soybean', 'Groundnut', 'Sunflower', 'Mustard', 'Sesame',
-  //   'Chickpea', 'Pigeon Pea', 'Green Gram', 'Black Gram', 'Lentil',
-  //   'Banana', 'Mango', 'Apple', 'Orange', 'Grapes', 'Pomegranate',
-  //   'Chilli', 'Turmeric', 'Coriander', 'Cumin', 'Ginger', 'Garlic'
-  // ];
-
-    const indianStates = [
+  const indianStates = [
     t('All States'), t('Andhra Pradesh'), t('Arunachal Pradesh'), t('Assam'), t('Bihar'), t('Chhattisgarh'),
     t('Goa'), t('Gujarat'), t('Haryana'), t('Himachal Pradesh'), t('Jharkhand'), t('Karnataka'),
     t('Kerala'), t('Madhya Pradesh'), t('Maharashtra'), t('Manipur'), t('Meghalaya'), t('Mizoram'),
@@ -54,8 +35,8 @@ import { useTranslation } from "react-i18next";
   const handleReset = () => {
     const resetFilters = {
       demand: '',
-      state: t('All States'),
-      commodity: t('All Commodities')
+      state: 'All States',
+      commodity: 'All Commodities'
     };
     setLocalFilters(resetFilters);
     setFilters(resetFilters);
@@ -76,7 +57,7 @@ import { useTranslation } from "react-i18next";
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">{t("Demand Level")}</h3>
             <div className="flex gap-2">
-              {['', t('High'), t('Medium'), t('Low')].map((demand) => (
+              {['', 'High', 'Medium', 'Low'].map((demand) => (
                 <button
                   key={demand}
                   onClick={() => setLocalFilters({ ...localFilters, demand })}
@@ -86,7 +67,7 @@ import { useTranslation } from "react-i18next";
                       : 'bg-gray-100 text-gray-700'
                   }`}
                 >
-                  {demand || t('All')}
+                  {demand ? t(demand) : t('All')}
                 </button>
               ))}
             </div>
@@ -159,55 +140,32 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     return 'winter';
   };
 
-  // const seasonalCommodities = {
-  //   summer: ['Wheat', 'Barley', 'Chickpea', 'Mustard', 'Sunflower', 'Tomato', 'Onion'],
-  //   monsoon: ['Rice', 'Maize', 'Bajra', 'Cotton', 'Soybean', 'Groundnut', 'Green Gram'],
-  //   autumn: ['Rice', 'Maize', 'Sugarcane', 'Turmeric', 'Ginger', 'Chilli'],
-  //   winter: ['Wheat', 'Potato', 'Cabbage', 'Cauliflower', 'Pea', 'Mustard', 'Chickpea']
-  // };
-
-  // const allStates = [
-  //   'Jharkhand', 'Maharashtra', 'Punjab', 'Haryana', 'Uttar Pradesh', 
-  //   'Madhya Pradesh', 'Gujarat', 'Rajasthan', 'Karnataka', 'Tamil Nadu',
-  //   'Andhra Pradesh', 'West Bengal', 'Bihar', 'Odisha', 'Kerala'
-  // ];
-
-  // const commodityTypes = {
-  //   'Rice': ['Basmati', 'Sona Masoori', 'IR-64', 'Swarna'],
-  //   'Wheat': ['HD-2967', 'Lokwan', 'Sharbati', 'PBW-343'],
-  //   'Tomato': ['Hybrid', 'Desi', 'Cherry'],
-  //   'Onion': ['Red', 'White', 'Nasik Red'],
-  //   'Potato': ['Kufri', 'Jyoti', 'Chandramukhi'],
-  //   'Maize': ['Hybrid', 'Sweet Corn', 'Local'],
-  //   'Cotton': ['Bt Cotton', 'Desi', 'Hybrid'],
-  //   'Soybean': ['JS-335', 'JS-95-60', 'Local'],
-  //   'default': ['Local', 'Hybrid', 'Standard']
-  // };
-
-    const seasonalCommodities = {
-    summer: [t('Wheat'), t('Barley'), t('Chickpea'), t('Mustard'), t('Sunflower'), t('Tomato'), t('Onion')],
-    monsoon: [t('Rice'), t('Maize'), t('Bajra'), t('Cotton'), t('Soybean'), t('Groundnut'), t('Green Gram')],
-    autumn: [t('Rice'), t('Maize'), t('Sugarcane'), t('Turmeric'), t('Ginger'), t('Chilli')],
-    winter: [t('Wheat'), t('Potato'), t('Cabbage'), t('Cauliflower'), t('Pea'), t('Mustard'), t('Chickpea')]
+  // Store keys instead of translated values
+  const seasonalCommodities = {
+    summer: ['Wheat', 'Barley', 'Chickpea', 'Mustard', 'Sunflower', 'Tomato', 'Onion'],
+    monsoon: ['Rice', 'Maize', 'Bajra', 'Cotton', 'Soybean', 'Groundnut', 'Green Gram'],
+    autumn: ['Rice', 'Maize', 'Sugarcane', 'Turmeric', 'Ginger', 'Chilli'],
+    winter: ['Wheat', 'Potato', 'Cabbage', 'Cauliflower', 'Pea', 'Mustard', 'Chickpea']
   };
 
   const allStates = [
-    t('Jharkhand'), t('Maharashtra'), t('Punjab'), t('Haryana'), t('Uttar Pradesh'), 
-    t('Madhya Pradesh'), t('Gujarat'), t('Rajasthan'), t('Karnataka'), t('Tamil Nadu'),
-    t('Andhra Pradesh'), t('West Bengal'), t('Bihar'), t('Odisha'), t('Kerala')
+    'Jharkhand', 'Maharashtra', 'Punjab', 'Haryana', 'Uttar Pradesh', 
+    'Madhya Pradesh', 'Gujarat', 'Rajasthan', 'Karnataka', 'Tamil Nadu',
+    'Andhra Pradesh', 'West Bengal', 'Bihar', 'Odisha', 'Kerala'
   ];
 
   const commodityTypes = {
-    [t('Rice')]: ['Basmati', 'Sona Masoori', 'IR-64', 'Swarna'],
-    [t('Wheat')]: ['HD-2967', 'Lokwan', 'Sharbati', 'PBW-343'],
-    [t('Tomato')]: ['Hybrid', 'Desi', 'Cherry'],
-    [t('Onion')]: ['Red', 'White', 'Nasik Red'],
-    [t('Potato')]: ['Kufri', 'Jyoti', 'Chandramukhi'],
-    [t('Maize')]: ['Hybrid', 'Sweet Corn', 'Local'],
-    [t('Cotton')]: ['Bt Cotton', 'Desi', 'Hybrid'],
-    [t('Soybean')]: ['JS-335', 'JS-95-60', 'Local'],
+    'Rice': ['Basmati', 'Sona Masoori', 'IR-64', 'Swarna'],
+    'Wheat': ['HD-2967', 'Lokwan', 'Sharbati', 'PBW-343'],
+    'Tomato': ['Hybrid', 'Desi', 'Cherry'],
+    'Onion': ['Red', 'White', 'Nasik Red'],
+    'Potato': ['Kufri', 'Jyoti', 'Chandramukhi'],
+    'Maize': ['Hybrid', 'Sweet Corn', 'Local'],
+    'Cotton': ['Bt Cotton', 'Desi', 'Hybrid'],
+    'Soybean': ['JS-335', 'JS-95-60', 'Local'],
     default: ['Local', 'Hybrid', 'Standard']
   };
+
   // OPTIMIZED: Fetch with reduced timeout and single retry
   const fetchCommodityPrice = async (state, commodity, district = '', retries = 1) => {
     for (let attempt = 0; attempt <= retries; attempt++) {
@@ -234,7 +192,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
           return {
             priceNum: data.prediction.per_quintal,
             price: `₹${Math.round(data.prediction.per_quintal).toLocaleString('en-IN')}`,
-            unit: t`/quintal`
+            unit: '/quintal'
           };
         }
         
@@ -257,15 +215,15 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
   const generateTime = () => {
     const minutes = Math.floor(Math.random() * 60);
     const hours = Math.floor(Math.random() * 5);
-    // const min=t("min ago");
+    
     if (minutes < 30 && hours === 0) {
-      return `${minutes} ${t("minutes_ago")}`;
+      return `${minutes} minutes ago`;
     } else if (hours === 0) {
-      return `${minutes} ${t("minutes ago")}`;
+      return `${minutes} minutes ago`;
     } else if(hours > 1){
-      return `${hours} ${t("hours ago")}`;
-    }else if(hours==1){
-      return `${hours} ${t("hour ago")}`;
+      return `${hours} hours ago`;
+    } else if(hours === 1){
+      return `${hours} hour ago`;
     }
   };
 
@@ -310,7 +268,6 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
             name: commodity,
             type: type,
             demand: demand,
-            location: t`${state} Mandi`,
             state: state,
             time: generateTime(),
             ...priceData,
@@ -355,7 +312,6 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
                 name: commodity,
                 type: type,
                 demand: demand,
-                location: t`${state} Mandi`,
                 state: state,
                 time: generateTime(),
                 ...priceData,
@@ -414,7 +370,6 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
             name: randomCommodity,
             type: type,
             demand: demands[Math.floor(Math.random() * demands.length)],
-            location: t`${randomState} Mandi`,
             state: randomState,
             time: generateTime(),
             ...priceData,
@@ -450,25 +405,26 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
       filtered = filtered.filter(crop => 
         crop.name.toLowerCase().includes(query) ||
         crop.type.toLowerCase().includes(query) ||
-        crop.location.toLowerCase().includes(query) ||
         crop.state.toLowerCase().includes(query)
       );
     }
 
     if (filters.demand) {
-      filtered = filtered.filter(crop => crop.demand.toLowerCase() === filters.demand.toLowerCase());
+      filtered = filtered.filter(crop => crop.demand === filters.demand);
     }
 
     if (filters.state && filters.state !== 'All States') {
-      filtered = filtered.filter(crop => crop.state === filters.state);
+      const stateKey = filters.state;
+      filtered = filtered.filter(crop => t(crop.state) === stateKey);
     }
 
     if (filters.commodity && filters.commodity !== 'All Commodities') {
-      filtered = filtered.filter(crop => crop.name.toLowerCase() === filters.commodity.toLowerCase());
+      const commodityKey = filters.commodity;
+      filtered = filtered.filter(crop => t(crop.name) === commodityKey);
     }
 
     return filtered;
-  }, [crops, searchQuery, filters]);
+  }, [crops, searchQuery, filters, t]);
 
   // OPTIMIZED: Throttled infinite scroll
   useEffect(() => {
@@ -503,6 +459,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
   useEffect(() => {
     loadInitialCrops();
   }, []);
+
   return (
     <div className="w-full mx-auto p-4 space-y-4">
       {/* Price Alert */}
@@ -511,7 +468,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
           <div>
             <p className="font-medium text-green-700">{t("Price Alert!")}</p>
             <p className="text-sm text-gray-600">
-              {filteredCrops.find(crop => crop.change > 10)?.name} {t("prices increased by")} {filteredCrops.find(crop => crop.change > 10)?.change}% – {t("Great time to sell")}
+              {t(filteredCrops.find(crop => crop.change > 10)?.name)} {t("prices increased by")} {filteredCrops.find(crop => crop.change > 10)?.change}% – {t("Great time to sell")}
             </p>
           </div>
           <button className="bg-green-700 hover:bg-green-800 text-white rounded-full px-6 py-2 text-sm font-medium">
@@ -564,8 +521,8 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
         <div key={`${crop.name}-${crop.state}-${idx}`} className="border rounded-xl shadow-sm p-4 flex items-center justify-between">
           <div className="space-y-1">
             <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-lg font-semibold">{crop.name}</h2>
-              <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md">{t(crop.type)}</span>
+              <h2 className="text-lg font-semibold">{t(crop.name)}</h2>
+              <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md">{crop.type}</span>
               <span className={`text-xs px-2 py-1 rounded-md font-medium ${
                 crop.demand === "High" ? "bg-green-100 text-green-700" :
                 crop.demand === "Medium" ? "bg-orange-100 text-orange-700" :
@@ -574,12 +531,12 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
                 {t(crop.demand)} {t("Demand")}
               </span>
             </div>
-            <p className="text-sm text-gray-500">{t(crop.location)} • {t(crop.time)}</p>
+            <p className="text-sm text-gray-500">{t(crop.state)} {t("Mandi")} • {crop.time}</p>
           </div>
 
           <div className="text-right">
             <p className="text-lg font-semibold text-gray-800">
-              {crop.price}<span className="text-sm font-normal">{crop.unit}</span>
+              {crop.price}<span className="text-sm font-normal">{t(crop.unit)}</span>
             </p>
             <div className="flex items-center justify-end text-sm">
               {crop.change > 0 ? (
@@ -636,14 +593,14 @@ function Markethub() {
     return count;
   };
 
-    return (
+  return (
     <div className="min-h-screen bg-white">
       {/* ==================== Header ==================== */}
       <section className="flex p-3 items-center">
         <p className="p-3"><span className="text-2xl">←</span></p>
         <article className="bg-white flex items-center">
           <p className="text-white bg-[#c2b7ae] rounded-3xl flex justify-center items-center py-3 px-3 text-2xl">
-            <span class="material-symbols-outlined">trending_up</span>
+            <span className="material-symbols-outlined">trending_up</span>
           </p>
           <div className="px-3">
             <h2 className="text-[#0f3300] text-xl font-bold">{t("Market Intelligence")}</h2>
@@ -651,17 +608,16 @@ function Markethub() {
           </div>
         </article>
         <p className="ml-auto text-2xl">
-          <span class="material-symbols-outlined">notifications</span>
+          <span className="material-symbols-outlined">notifications</span>
         </p>
       </section>
       <hr className="bg-[#fff9eb] h-0.5" />
 
-
       {/* ==================== Search & Filter ==================== */}
-       <section className='p-3'>      
+      <section className='p-3'>      
         <div className="relative w-full flex">
-          <section className="absolute  p-3  text-gray-500">
-            <span class="material-symbols-outlined">search</span>
+          <section className="absolute p-3 text-gray-500">
+            <span className="material-symbols-outlined">search</span>
           </section>
           <input 
             type="text" 
@@ -674,8 +630,8 @@ function Markethub() {
             onClick={() => setIsFilterOpen(true)}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
           >
-            <section className="text-gray-500" >
-              <span class="material-symbols-outlined">filter_alt</span>
+            <section className="text-gray-500">
+              <span className="material-symbols-outlined">filter_alt</span>
             </section>
             {activeFiltersCount() > 0 && (
               <span className="absolute -top-1 -right-1 bg-gray-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
@@ -693,7 +649,7 @@ function Markethub() {
           <div className="flex flex-wrap gap-2">
             {filters.demand && (
               <span className="bg-[#0f3300] text-white px-3 py-1 rounded-full text-sm flex items-center gap-1">
-                Demand: {filters.demand}
+                {t("Demand")}: {t(filters.demand)}
                 <button onClick={() => setFilters({ ...filters, demand: '' })}>×</button>
               </span>
             )}
@@ -745,17 +701,14 @@ function Markethub() {
 
       {/* ==================== Conditional Views ==================== */}
       {currentView === 'liveprice' && (
-        // <LivePrice filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters) + searchQuery}/>
         <LivePrice filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters)} />
-
       )}
       
       {currentView === 'findbuyers' && (
         <FindBuyers filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters) + searchQuery}/>
-        // <FindBuyers filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters)}/>
-
       )}
     </div>
   );
 }
+
 export default Markethub;
