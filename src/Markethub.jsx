@@ -3,30 +3,46 @@ import { ArrowUpRight, ArrowDownRight, Minus } from "lucide-react";
 import FindBuyers from './FindBuyers';
 import { useTranslation } from "react-i18next";
 
-
-// function Home() {
-//   const { t } = useTranslation();
-
-// ==================== Filter Modal Component ====================
-function FilterModal({ isOpen, onClose, filters, setFilters, onApply }) {
+  // ==================== Filter Modal Component ====================
+  function FilterModal({ isOpen, onClose, filters, setFilters, onApply }) {
   const [localFilters, setLocalFilters] = useState(filters);
+  const { t,i18n } = useTranslation();
 
-  const indianStates = [
-    'All States', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
-    'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
-    'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram',
-    'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
-    'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Delhi'
+
+  // const indianStates = [
+  //   t('All States'), t('Andhra Pradesh'), t('Arunachal Pradesh'), t('Assam'), t('Bihar'), t('Chhattisgarh'),
+  //   t('Goa'), 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
+  //   'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram',
+  //   'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
+  //   'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Delhi'
+  // ];
+
+  // const commodities = [
+  //   'All Commodities', 'Rice', 'Wheat', 'Maize', 'Bajra', 'Jowar', 'Barley',
+  //   'Cotton', 'Sugarcane', 'Jute', 'Tea', 'Coffee', 'Rubber',
+  //   'Potato', 'Onion', 'Tomato', 'Cabbage', 'Cauliflower',
+  //   'Soybean', 'Groundnut', 'Sunflower', 'Mustard', 'Sesame',
+  //   'Chickpea', 'Pigeon Pea', 'Green Gram', 'Black Gram', 'Lentil',
+  //   'Banana', 'Mango', 'Apple', 'Orange', 'Grapes', 'Pomegranate',
+  //   'Chilli', 'Turmeric', 'Coriander', 'Cumin', 'Ginger', 'Garlic'
+  // ];
+
+    const indianStates = [
+    t('All States'), t('Andhra Pradesh'), t('Arunachal Pradesh'), t('Assam'), t('Bihar'), t('Chhattisgarh'),
+    t('Goa'), t('Gujarat'), t('Haryana'), t('Himachal Pradesh'), t('Jharkhand'), t('Karnataka'),
+    t('Kerala'), t('Madhya Pradesh'), t('Maharashtra'), t('Manipur'), t('Meghalaya'), t('Mizoram'),
+    t('Nagaland'), t('Odisha'), t('Punjab'), t('Rajasthan'), t('Sikkim'), t('Tamil Nadu'),
+    t('Telangana'), t('Tripura'), t('Uttar Pradesh'), t('Uttarakhand'), t('West Bengal'), t('Delhi')
   ];
 
   const commodities = [
-    'All Commodities', 'Rice', 'Wheat', 'Maize', 'Bajra', 'Jowar', 'Barley',
-    'Cotton', 'Sugarcane', 'Jute', 'Tea', 'Coffee', 'Rubber',
-    'Potato', 'Onion', 'Tomato', 'Cabbage', 'Cauliflower',
-    'Soybean', 'Groundnut', 'Sunflower', 'Mustard', 'Sesame',
-    'Chickpea', 'Pigeon Pea', 'Green Gram', 'Black Gram', 'Lentil',
-    'Banana', 'Mango', 'Apple', 'Orange', 'Grapes', 'Pomegranate',
-    'Chilli', 'Turmeric', 'Coriander', 'Cumin', 'Ginger', 'Garlic'
+    t('All Commodities'), t('Rice'), t('Wheat'), t('Maize'), t('Bajra'), t('Jowar'), t('Barley'),
+    t('Cotton'), t('Sugarcane'), t('Jute'), t('Tea'), t('Coffee'), t('Rubber'),
+    t('Potato'), t('Onion'), t('Tomato'), t('Cabbage'), t('Cauliflower'),
+    t('Soybean'), t('Groundnut'), t('Sunflower'), t('Mustard'), t('Sesame'),
+    t('Chickpea'), t('Pigeon Pea'), t('Green Gram'), t('Black Gram'), t('Lentil'),
+    t('Banana'), t('Mango'), t('Apple'), t('Orange'), t('Grapes'), t('Pomegranate'),
+    t('Chilli'), t('Turmeric'), t('Coriander'), t('Cumin'), t('Ginger'), t('Garlic')
   ];
 
   const handleApply = () => {
@@ -38,8 +54,8 @@ function FilterModal({ isOpen, onClose, filters, setFilters, onApply }) {
   const handleReset = () => {
     const resetFilters = {
       demand: '',
-      state: 'All States',
-      commodity: 'All Commodities'
+      state: t('All States'),
+      commodity: t('All Commodities')
     };
     setLocalFilters(resetFilters);
     setFilters(resetFilters);
@@ -52,38 +68,36 @@ function FilterModal({ isOpen, onClose, filters, setFilters, onApply }) {
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end">
       <div className="bg-white w-full rounded-t-3xl max-h-[85vh] overflow-y-auto">
         <div className="sticky top-0 bg-white border-b p-4 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-[#0f3300]">Filter Options</h2>
+          <h2 className="text-xl font-bold text-gray-900">{t("Filter Options")}</h2>
           <button onClick={onClose} className="text-2xl text-gray-500">×</button>
         </div>
 
         <div className="p-4 space-y-6">
-          {/* Demand Filter */}
           <div>
-            <h3 className="font-semibold text-[#0f3300] mb-3">Demand Level</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">{t("Demand Level")}</h3>
             <div className="flex gap-2">
-              {['', 'High', 'Medium', 'Low'].map((demand) => (
+              {['', t('High'), t('Medium'), t('Low')].map((demand) => (
                 <button
                   key={demand}
                   onClick={() => setLocalFilters({ ...localFilters, demand })}
                   className={`px-4 py-2 rounded-lg font-medium flex-1 ${
                     localFilters.demand === demand
-                      ? 'bg-[#0f3300] text-white'
-                      : 'bg-[#fff9eb] text-[#0f3300]'
+                      ? 'bg-green-700 text-white'
+                      : 'bg-gray-100 text-gray-700'
                   }`}
                 >
-                  {demand || 'All'}
+                  {demand || t('All')}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* State Filter */}
           <div>
-            <h3 className="font-semibold text-[#0f3300] mb-3">State</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">{t("State")}</h3>
             <select
               value={localFilters.state}
               onChange={(e) => setLocalFilters({ ...localFilters, state: e.target.value })}
-              className="w-full p-3 bg-[#fff9eb] rounded-lg outline-none text-[#0f3300]"
+              className="w-full p-3 bg-gray-100 rounded-lg outline-none text-gray-900"
             >
               {indianStates.map((state) => (
                 <option key={state} value={state}>
@@ -93,13 +107,12 @@ function FilterModal({ isOpen, onClose, filters, setFilters, onApply }) {
             </select>
           </div>
 
-          {/* Commodity Filter */}
           <div>
-            <h3 className="font-semibold text-[#0f3300] mb-3">Commodity</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">{t("Commodity")}</h3>
             <select
               value={localFilters.commodity}
               onChange={(e) => setLocalFilters({ ...localFilters, commodity: e.target.value })}
-              className="w-full p-3 bg-[#fff9eb] rounded-lg outline-none text-[#0f3300]"
+              className="w-full p-3 bg-gray-100 rounded-lg outline-none text-gray-900"
             >
               {commodities.map((commodity) => (
                 <option key={commodity} value={commodity}>
@@ -113,15 +126,15 @@ function FilterModal({ isOpen, onClose, filters, setFilters, onApply }) {
         <div className="sticky bottom-0 bg-white border-t p-4 flex gap-3">
           <button
             onClick={handleReset}
-            className="flex-1 py-3 rounded-lg font-medium bg-[#fff9eb] text-[#0f3300]"
+            className="flex-1 py-3 rounded-lg font-medium bg-gray-100 text-gray-700"
           >
-            Reset
+            {t("Reset")}
           </button>
           <button
             onClick={handleApply}
-            className="flex-1 py-3 rounded-lg font-medium bg-[#0f3300] text-white"
+            className="flex-1 py-3 rounded-lg font-medium bg-green-700 text-white"
           >
-            Apply Filters
+            {t("Apply Filters")}
           </button>
         </div>
       </div>
@@ -131,13 +144,13 @@ function FilterModal({ isOpen, onClose, filters, setFilters, onApply }) {
 
 // ==================== LivePrice Component ====================
 function LivePrice({ filters = {}, searchQuery = '' }) {
+  const { t, i18n } = useTranslation(); 
   const [crops, setCrops] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [initialLoad, setInitialLoad] = useState(true);
   
-  // Get current season based on month
   const getCurrentSeason = () => {
     const month = new Date().getMonth() + 1;
     if (month >= 3 && month <= 5) return 'summer';
@@ -146,38 +159,61 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     return 'winter';
   };
 
-  // Season-wise commodity mapping
-  const seasonalCommodities = {
-    summer: ['Wheat', 'Barley', 'Chickpea', 'Mustard', 'Sunflower', 'Tomato', 'Onion'],
-    monsoon: ['Rice', 'Maize', 'Bajra', 'Cotton', 'Soybean', 'Groundnut', 'Green Gram'],
-    autumn: ['Rice', 'Maize', 'Sugarcane', 'Turmeric', 'Ginger', 'Chilli'],
-    winter: ['Wheat', 'Potato', 'Cabbage', 'Cauliflower', 'Pea', 'Mustard', 'Chickpea']
+  // const seasonalCommodities = {
+  //   summer: ['Wheat', 'Barley', 'Chickpea', 'Mustard', 'Sunflower', 'Tomato', 'Onion'],
+  //   monsoon: ['Rice', 'Maize', 'Bajra', 'Cotton', 'Soybean', 'Groundnut', 'Green Gram'],
+  //   autumn: ['Rice', 'Maize', 'Sugarcane', 'Turmeric', 'Ginger', 'Chilli'],
+  //   winter: ['Wheat', 'Potato', 'Cabbage', 'Cauliflower', 'Pea', 'Mustard', 'Chickpea']
+  // };
+
+  // const allStates = [
+  //   'Jharkhand', 'Maharashtra', 'Punjab', 'Haryana', 'Uttar Pradesh', 
+  //   'Madhya Pradesh', 'Gujarat', 'Rajasthan', 'Karnataka', 'Tamil Nadu',
+  //   'Andhra Pradesh', 'West Bengal', 'Bihar', 'Odisha', 'Kerala'
+  // ];
+
+  // const commodityTypes = {
+  //   'Rice': ['Basmati', 'Sona Masoori', 'IR-64', 'Swarna'],
+  //   'Wheat': ['HD-2967', 'Lokwan', 'Sharbati', 'PBW-343'],
+  //   'Tomato': ['Hybrid', 'Desi', 'Cherry'],
+  //   'Onion': ['Red', 'White', 'Nasik Red'],
+  //   'Potato': ['Kufri', 'Jyoti', 'Chandramukhi'],
+  //   'Maize': ['Hybrid', 'Sweet Corn', 'Local'],
+  //   'Cotton': ['Bt Cotton', 'Desi', 'Hybrid'],
+  //   'Soybean': ['JS-335', 'JS-95-60', 'Local'],
+  //   'default': ['Local', 'Hybrid', 'Standard']
+  // };
+
+    const seasonalCommodities = {
+    summer: [t('Wheat'), t('Barley'), t('Chickpea'), t('Mustard'), t('Sunflower'), t('Tomato'), t('Onion')],
+    monsoon: [t('Rice'), t('Maize'), t('Bajra'), t('Cotton'), t('Soybean'), t('Groundnut'), t('Green Gram')],
+    autumn: [t('Rice'), t('Maize'), t('Sugarcane'), t('Turmeric'), t('Ginger'), t('Chilli')],
+    winter: [t('Wheat'), t('Potato'), t('Cabbage'), t('Cauliflower'), t('Pea'), t('Mustard'), t('Chickpea')]
   };
 
   const allStates = [
-    'Jharkhand', 'Maharashtra', 'Punjab', 'Haryana', 'Uttar Pradesh', 
-    'Madhya Pradesh', 'Gujarat', 'Rajasthan', 'Karnataka', 'Tamil Nadu',
-    'Andhra Pradesh', 'West Bengal', 'Bihar', 'Odisha', 'Kerala'
+    t('Jharkhand'), t('Maharashtra'), t('Punjab'), t('Haryana'), t('Uttar Pradesh'), 
+    t('Madhya Pradesh'), t('Gujarat'), t('Rajasthan'), t('Karnataka'), t('Tamil Nadu'),
+    t('Andhra Pradesh'), t('West Bengal'), t('Bihar'), t('Odisha'), t('Kerala')
   ];
 
   const commodityTypes = {
-    'Rice': ['Basmati', 'Sona Masoori', 'IR-64', 'Swarna'],
-    'Wheat': ['HD-2967', 'Lokwan', 'Sharbati', 'PBW-343'],
-    'Tomato': ['Hybrid', 'Desi', 'Cherry'],
-    'Onion': ['Red', 'White', 'Nasik Red'],
-    'Potato': ['Kufri', 'Jyoti', 'Chandramukhi'],
-    'Maize': ['Hybrid', 'Sweet Corn', 'Local'],
-    'Cotton': ['Bt Cotton', 'Desi', 'Hybrid'],
-    'Soybean': ['JS-335', 'JS-95-60', 'Local'],
-    'default': ['Local', 'Hybrid', 'Standard']
+    [t('Rice')]: ['Basmati', 'Sona Masoori', 'IR-64', 'Swarna'],
+    [t('Wheat')]: ['HD-2967', 'Lokwan', 'Sharbati', 'PBW-343'],
+    [t('Tomato')]: ['Hybrid', 'Desi', 'Cherry'],
+    [t('Onion')]: ['Red', 'White', 'Nasik Red'],
+    [t('Potato')]: ['Kufri', 'Jyoti', 'Chandramukhi'],
+    [t('Maize')]: ['Hybrid', 'Sweet Corn', 'Local'],
+    [t('Cotton')]: ['Bt Cotton', 'Desi', 'Hybrid'],
+    [t('Soybean')]: ['JS-335', 'JS-95-60', 'Local'],
+    default: ['Local', 'Hybrid', 'Standard']
   };
-
-  // Fetch price from API with retry logic
-  const fetchCommodityPrice = async (state, commodity, district = '', retries = 2) => {
+  // OPTIMIZED: Fetch with reduced timeout and single retry
+  const fetchCommodityPrice = async (state, commodity, district = '', retries = 1) => {
     for (let attempt = 0; attempt <= retries; attempt++) {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 seconds timeout
         
         const response = await fetch('https://commodity-price-api.onrender.com/predict', {
           method: 'POST',
@@ -198,45 +234,42 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
           return {
             priceNum: data.prediction.per_quintal,
             price: `₹${Math.round(data.prediction.per_quintal).toLocaleString('en-IN')}`,
-            unit: '/quintal'
+            unit: t`/quintal`
           };
         }
         
-        console.warn(`Invalid data format for ${commodity} in ${state}:`, data);
         return null;
       } catch (err) {
-        console.error(`API Error (attempt ${attempt + 1}/${retries + 1}) for ${commodity} in ${state}:`, err.message);
         if (attempt === retries) {
           return null;
         }
-        // Wait before retry (exponential backoff)
-        await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
+        await new Promise(resolve => setTimeout(resolve, 500));
       }
     }
     return null;
   };
 
-  // Generate random change percentage
   const generateChange = () => {
     const changes = [-2.5, -1.8, -1.2, -0.5, 0, 0.5, 1.2, 2.1, 3.5, 5.2, 8.3, 12.5, 15.3];
     return changes[Math.floor(Math.random() * changes.length)];
   };
 
-  // Generate random time
   const generateTime = () => {
     const minutes = Math.floor(Math.random() * 60);
     const hours = Math.floor(Math.random() * 5);
-    
+    // const min=t("min ago");
     if (minutes < 30 && hours === 0) {
-      return `${minutes} min ago`;
+      return `${minutes} ${t("minutes_ago")}`;
     } else if (hours === 0) {
-      return `${minutes} min ago`;
-    } else {
-      return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+      return `${minutes} ${t("minutes ago")}`;
+    } else if(hours > 1){
+      return `${hours} ${t("hours ago")}`;
+    }else if(hours==1){
+      return `${hours} ${t("hour ago")}`;
     }
   };
 
-  // Load initial commodities from MULTIPLE states
+  // OPTIMIZED: Load in batches with progressive enhancement
   const loadInitialCrops = async () => {
     setLoading(true);
     setError(null);
@@ -244,73 +277,108 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     try {
       const season = getCurrentSeason();
       const seasonalCrops = seasonalCommodities[season];
-      // const initialStates = ['Jharkhand', 'Maharashtra', 'Punjab', 'Gujarat'];
-      const initialStates = ['Jharkhand', 'Maharashtra', 'Punjab', 'Haryana', 'Uttar Pradesh', 'Madhya Pradesh', 'Gujarat', 'Rajasthan', 'Karnataka', 'Tamil Nadu','Andhra Pradesh', 'West Bengal', 'Bihar', 'Odisha', 'Kerala'];
-
+      const initialStates = ['Jharkhand', 'Maharashtra', 'Punjab', 'Gujarat'];
       const demands = ['High', 'High', 'Medium'];
       
       console.log('Loading initial crops for season:', season);
-      console.log('Seasonal commodities:', seasonalCrops);
       
-      // Create promises for seasonal commodities from MULTIPLE states
-      const promises = [];
+      // Load only 6 items first for fast initial render
+      const batchSize = 6;
+      const initialBatch = [];
       
-      // For each seasonal crop, fetch from 2-3 different states
-      seasonalCrops.forEach((commodity) => {
+      for (let i = 0; i < Math.min(seasonalCrops.length, batchSize); i++) {
+        const commodity = seasonalCrops[i];
         const types = commodityTypes[commodity] || commodityTypes['default'];
+        const state = initialStates[i % initialStates.length];
+        const type = types[0];
+        const demand = demands[i % demands.length];
         
-        // Select 2 random states for this commodity
-        const selectedStates = initialStates
-          .sort(() => 0.5 - Math.random())
-          .slice(0, 2);
-        
-        selectedStates.forEach((state, idx) => {
-          const type = types[idx % types.length];
-          const demand = demands[idx % demands.length];
-          
-          promises.push(
-            fetchCommodityPrice(state, commodity)
-              .then(priceData => {
-                if (priceData) {
-                  console.log(`✓ Fetched ${commodity} from ${state}`);
-                  return {
-                    name: commodity,
-                    type: type,
-                    demand: demand,
-                    location: `${state} Mandi`,
-                    state: state,
-                    time: generateTime(),
-                    ...priceData,
-                    change: generateChange()
-                  };
-                }
-                return null;
-              })
-              .catch(err => {
-                console.error(`✗ Failed ${commodity} from ${state}:`, err);
-                return null;
-              })
-          );
+        initialBatch.push({
+          state,
+          commodity,
+          type,
+          demand
         });
-      });
-      
-      console.log(`Fetching ${promises.length} commodity-state combinations...`);
-      
-      // Wait for all promises to resolve
-      const results = await Promise.all(promises);
-      const initialCrops = results.filter(crop => crop !== null);
-      
-      console.log('✓ Total crops loaded:', initialCrops.length);
-      console.log('✗ Failed crops:', promises.length - initialCrops.length);
-      
-      // If no crops loaded, show error
-      if (initialCrops.length === 0) {
-        setError('Unable to fetch commodity prices. Please check your API connection.');
-      } else {
-        console.log(`Successfully loaded data from states:`, [...new Set(initialCrops.map(c => c.state))]);
       }
       
-      setCrops(initialCrops);
+      // Fetch first batch
+      console.log(`Fetching initial batch of ${initialBatch.length} items...`);
+      const batchPromises = initialBatch.map(async ({ state, commodity, type, demand }) => {
+        const priceData = await fetchCommodityPrice(state, commodity);
+        if (priceData) {
+          return {
+            name: commodity,
+            type: type,
+            demand: demand,
+            location: t`${state} Mandi`,
+            state: state,
+            time: generateTime(),
+            ...priceData,
+            change: generateChange()
+          };
+        }
+        return null;
+      });
+      
+      const results = await Promise.all(batchPromises);
+      const validCrops = results.filter(crop => crop !== null);
+      
+      console.log('✓ Initial batch loaded:', validCrops.length);
+      
+      // Show initial results immediately
+      if (validCrops.length > 0) {
+        setCrops(validCrops);
+      }
+      
+      // Load remaining items in background
+      setTimeout(async () => {
+        const remainingBatch = [];
+        for (let i = batchSize; i < seasonalCrops.length && remainingBatch.length < 6; i++) {
+          const commodity = seasonalCrops[i];
+          const types = commodityTypes[commodity] || commodityTypes['default'];
+          const state = initialStates[i % initialStates.length];
+          
+          remainingBatch.push({
+            state,
+            commodity,
+            type: types[0],
+            demand: demands[i % demands.length]
+          });
+        }
+        
+        if (remainingBatch.length > 0) {
+          console.log('Loading second batch in background...');
+          const moreBatch = remainingBatch.map(async ({ state, commodity, type, demand }) => {
+            const priceData = await fetchCommodityPrice(state, commodity);
+            if (priceData) {
+              return {
+                name: commodity,
+                type: type,
+                demand: demand,
+                location: t`${state} Mandi`,
+                state: state,
+                time: generateTime(),
+                ...priceData,
+                change: generateChange()
+              };
+            }
+            return null;
+          });
+          
+          const moreResults = await Promise.all(moreBatch);
+          const moreCrops = moreResults.filter(crop => crop !== null);
+          
+          if (moreCrops.length > 0) {
+            setCrops(prev => [...prev, ...moreCrops]);
+            console.log('✓ Second batch loaded:', moreCrops.length);
+          }
+        }
+      }, 1000);
+      
+      if (validCrops.length === 0) {
+        setError('Unable to fetch commodity prices. Please check your API connection.');
+      }
+      
     } catch (err) {
       console.error('Error loading initial crops:', err);
       setError('Failed to load commodity data. Please try again.');
@@ -320,7 +388,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     }
   };
   
-  // Load more random commodities
+  // OPTIMIZED: Load 4 items at a time instead of 6
   const loadMoreCrops = async () => {
     if (loading || !hasMore) return;
     
@@ -331,8 +399,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     const uniqueCommodities = [...new Set(allCommodities)];
     const demands = ['High', 'High', 'Medium', 'Medium', 'Low'];
     
-    // Create 6 parallel fetch promises (increased from 4)
-    const promises = Array.from({ length: 6 }, async () => {
+    const promises = Array.from({ length: 4 }, async () => {
       const randomState = allStates[Math.floor(Math.random() * allStates.length)];
       const randomCommodity = uniqueCommodities[Math.floor(Math.random() * uniqueCommodities.length)];
       const types = commodityTypes[randomCommodity] || commodityTypes['default'];
@@ -347,7 +414,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
             name: randomCommodity,
             type: type,
             demand: demands[Math.floor(Math.random() * demands.length)],
-            location: `${randomState} Mandi`,
+            location: t`${randomState} Mandi`,
             state: randomState,
             time: generateTime(),
             ...priceData,
@@ -368,7 +435,6 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     setCrops(prev => [...prev, ...newCrops]);
     setLoading(false);
     
-    // Stop loading more after 50 items
     if (crops.length + newCrops.length >= 50) {
       console.log('Reached maximum crops limit (50)');
       setHasMore(false);
@@ -404,47 +470,57 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
     return filtered;
   }, [crops, searchQuery, filters]);
 
-  // Infinite scroll handler
+  // OPTIMIZED: Throttled infinite scroll
   useEffect(() => {
     const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       const clientHeight = document.documentElement.clientHeight;
       
-      // Trigger when user scrolls to bottom 500px
-      if (scrollHeight - scrollTop - clientHeight < 500 && !loading && hasMore && !initialLoad) {
+      if (scrollHeight - scrollTop - clientHeight < 300 && !loading && hasMore && !initialLoad) {
         console.log('Scroll triggered - loading more crops');
         loadMoreCrops();
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    let scrollTimeout;
+    const throttledScroll = () => {
+      if (scrollTimeout) return;
+      scrollTimeout = setTimeout(() => {
+        handleScroll();
+        scrollTimeout = null;
+      }, 200);
+    };
+
+    window.addEventListener('scroll', throttledScroll);
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+    };
   }, [loading, hasMore, initialLoad, crops.length]);
 
   // Initial load
   useEffect(() => {
     loadInitialCrops();
   }, []);
-
   return (
     <div className="w-full mx-auto p-4 space-y-4">
-      {/* ==================== Price Alert ==================== */}
+      {/* Price Alert */}
       {filteredCrops.some(crop => crop.change > 10) && (
         <div className="bg-gradient-to-r from-green-50 to-yellow-50 border border-green-200 rounded-xl shadow-sm p-4 flex items-center justify-between">
           <div>
-            <p className="font-medium text-green-700">Price Alert!</p>
+            <p className="font-medium text-green-700">{t("Price Alert!")}</p>
             <p className="text-sm text-gray-600">
-              {filteredCrops.find(crop => crop.change > 10)?.name} prices increased by {filteredCrops.find(crop => crop.change > 10)?.change}% – Great time to sell
+              {filteredCrops.find(crop => crop.change > 10)?.name} {t("prices increased by")} {filteredCrops.find(crop => crop.change > 10)?.change}% – {t("Great time to sell")}
             </p>
           </div>
           <button className="bg-green-700 hover:bg-green-800 text-white rounded-full px-6 py-2 text-sm font-medium">
-            Sell Now
+            {t("Sell Now")}
           </button>
         </div>
       )}
 
-      {/* ==================== Error Message ==================== */}
+      {/* Error Message */}
       {error && (
         <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-center">
           <p className="text-red-700 font-medium">Failed to load prices</p>
@@ -453,37 +529,37 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
             onClick={loadInitialCrops}
             className="mt-2 text-red-600 underline text-sm"
           >
-            Try Again
+            {t("Try Again")}
           </button>
         </div>
       )}
 
-      {/* ==================== Results Count ==================== */}
+      {/* Results Count */}
       {(searchQuery || filters.demand || filters.state !== 'All States' || filters.commodity !== 'All Commodities') && (
         <div className="text-sm text-gray-600 px-1">
-          {filteredCrops.length} {filteredCrops.length === 1 ? 'result' : 'results'} found
+          {filteredCrops.length} {filteredCrops.length === 1 ? 'result' : 'results'} {t("found")}
         </div>
       )}
 
-      {/* ==================== No Results ==================== */}
+      {/* No Results */}
       {!loading && filteredCrops.length === 0 && !initialLoad && (
         <div className="text-center py-10">
           <div className="text-gray-400 text-5xl mb-4">🔍</div>
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">No crops found</h3>
+          <h3 className="text-lg font-semibold text-gray-700 mb-2">{t("No crops found")}</h3>
           <p className="text-gray-500">Try adjusting your search or filters</p>
         </div>
       )}
 
-      {/* ==================== Initial Loading ==================== */}
+      {/* Initial Loading */}
       {initialLoad && loading && (
         <div className="text-center py-20">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-[#0f3300] border-t-transparent mb-4"></div>
-          <p className="text-gray-600 font-medium">Loading seasonal commodities...</p>
-          <p className="text-gray-500 text-sm mt-2">Fetching live prices from multiple states</p>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-green-700 border-t-transparent mb-4"></div>
+          <p className="text-gray-600 font-medium">{t("Loading seasonal commodities...")}</p>
+          <p className="text-gray-500 text-sm mt-2">{t("Fetching live prices from multiple states")}</p>
         </div>
       )}
 
-      {/* ==================== Crop Cards ==================== */}
+      {/* Crop Cards */}
       {filteredCrops.map((crop, idx) => (
         <div key={`${crop.name}-${crop.state}-${idx}`} className="border rounded-xl shadow-sm p-4 flex items-center justify-between">
           <div className="space-y-1">
@@ -495,10 +571,10 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
                 crop.demand === "Medium" ? "bg-orange-100 text-orange-700" :
                 "bg-red-100 text-red-700"
               }`}>
-                {crop.demand} Demand
+                {t(crop.demand)} {t("Demand")}
               </span>
             </div>
-            <p className="text-sm text-gray-500">{crop.location} • {crop.time}</p>
+            <p className="text-sm text-gray-500">{t(crop.location)} • {t(crop.time)}</p>
           </div>
 
           <div className="text-right">
@@ -511,25 +587,25 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
               ) : crop.change < 0 ? (
                 <span className="flex items-center text-red-600"><ArrowDownRight size={14} className="mr-1" />{Math.abs(crop.change)}%</span>
               ) : (
-                <span className="flex items-center text-gray-500"><Minus size={14} className="mr-1" /> No change</span>
+                <span className="flex items-center text-gray-500"><Minus size={14} className="mr-1" /> {t("No change")}</span>
               )}
             </div>
           </div>
         </div>
       ))}
 
-      {/* ==================== Loading More Indicator ==================== */}
+      {/* Loading More Indicator */}
       {loading && !initialLoad && (
         <div className="text-center py-8">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-[#0f3300] border-t-transparent"></div>
-          <p className="text-gray-500 mt-2 text-sm">Loading more prices...</p>
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-green-700 border-t-transparent"></div>
+          <p className="text-gray-500 mt-2 text-sm">{t("Loading more prices...")}</p>
         </div>
       )}
 
-      {/* ==================== End of Results ==================== */}
+      {/* End of Results */}
       {!hasMore && !loading && filteredCrops.length > 0 && (
         <div className="text-center py-4 text-gray-500 text-sm">
-          No more commodities to load
+          {t("No more commodities to load")}
         </div>
       )}
     </div>
@@ -538,6 +614,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
 
 // ==================== Main Markethub Component ====================
 function Markethub() {
+  const { t, i18n } = useTranslation(); 
   const [searchQuery, setSearchQuery] = useState('');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [currentView, setCurrentView] = useState('liveprice');
@@ -559,7 +636,7 @@ function Markethub() {
     return count;
   };
 
-  return (
+    return (
     <div className="min-h-screen bg-white">
       {/* ==================== Header ==================== */}
       <section className="flex p-3 items-center">
@@ -569,8 +646,8 @@ function Markethub() {
             <span class="material-symbols-outlined">trending_up</span>
           </p>
           <div className="px-3">
-            <h2 className="text-[#0f3300] text-xl font-bold">Market Intelligence</h2>
-            <p className="text-[#0f3300] text-md">Live prices, buyers & transport</p>
+            <h2 className="text-[#0f3300] text-xl font-bold">{t("Market Intelligence")}</h2>
+            <p className="text-[#0f3300] text-md">{t("Live prices, buyers & transport")}</p>
           </div>
         </article>
         <p className="ml-auto text-2xl">
@@ -588,7 +665,7 @@ function Markethub() {
           </section>
           <input 
             type="text" 
-            placeholder="Search Crops, Market, Buyers" 
+            placeholder={t("Search Crops, Market, Buyers")} 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="bg-[#fff9eb] p-3 pl-10 pr-10 w-full rounded-xl outline-none"
@@ -644,7 +721,7 @@ function Markethub() {
             currentView === 'liveprice' ? 'bg-[#0f3300] text-white' : 'bg-[#fff9eb] text-[#0f3300]'
           }`}
         >
-          Live Prices
+          {t("Live Prices")}
         </button>
 
         <button
@@ -653,7 +730,7 @@ function Markethub() {
             currentView === 'findbuyers' ? 'bg-[#0f3300] text-white' : 'bg-[#fff9eb] text-[#0f3300]'
           }`}
         >
-          Find Buyers
+          {t("Find Buyers")}
         </button>
       </section>
 
@@ -674,12 +751,11 @@ function Markethub() {
       )}
       
       {currentView === 'findbuyers' && (
-        // <FindBuyers filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters) + searchQuery}/>
-        <FindBuyers filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters)}/>
+        <FindBuyers filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters) + searchQuery}/>
+        // <FindBuyers filters={filters} searchQuery={searchQuery} key={JSON.stringify(filters)}/>
 
       )}
     </div>
   );
 }
-// }
 export default Markethub;
