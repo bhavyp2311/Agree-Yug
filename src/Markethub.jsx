@@ -565,7 +565,7 @@ function LivePrice({ filters = {}, searchQuery = '' }) {
           <div className="space-y-1">
             <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-lg font-semibold">{crop.name}</h2>
-              <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md">{crop.type}</span>
+              <span className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md">{t(crop.type)}</span>
               <span className={`text-xs px-2 py-1 rounded-md font-medium ${
                 crop.demand === "High" ? "bg-green-100 text-green-700" :
                 crop.demand === "Medium" ? "bg-orange-100 text-orange-700" :
