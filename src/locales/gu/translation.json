@@ -169,7 +169,7 @@
   "Jowar": "જવાર",
   "Barley": "જ્વાર",
   "Cotton": "કપાસ",
-  "Sugarcane": "ખાંડકણ",
+  "Sugarcane": "શેરડી ",
   "Jute": "જ્યૂટ",
   "Tea": "ચા",
   "Coffee": "કોફી",
@@ -186,11 +186,11 @@
   "Sesame": "તલ",
   "Chickpea": "છોલા",
   "Pigeon Pea": "તુવાર",
-  "Green Gram": "મુગ",
+  "Green Gram": "મગ",
   "Black Gram": "ઉજળ કાળો ચણા",
   "Lentil": "ડાળ",
   "Banana": "કેળું",
-  "Mango": "આંબા",
+  "Mango": "keri",
   "Apple": "સફરજન",
   "Orange": "નારંગી",
   "Grapes": "દ્રાક્ષ",
@@ -251,5 +251,6 @@
   "prices increased by": "ભાવ વધ્યાં છે",
   "prices decreased by": "ભાવ ઘટ્યાં છે",
   "Great time to sell": "વેચવાનો ઉત્તમ સમય",
-  "Pea" : "વટાણા"
+  "Pea" : "વટાણા",
+  "Mandi":"મંડી"
 }
