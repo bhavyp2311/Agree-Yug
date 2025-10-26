@@ -1,6 +1,7 @@
 import React from 'react';
 import hero from "./assets/hero.jpg";
 import { useTranslation } from "react-i18next";
+import Ai from './Ai';
 
 function Home() {
   const { t } = useTranslation();
@@ -31,7 +32,7 @@ function Home() {
                 )}
               </p>
               <article className="flex space-x-3 flex-wrap justify-center lg:justify-start">
-                <button className="flex bg-yellow-500 p-3 rounded-xl hover:bg-yellow-400 items-center">
+                <button className="flex bg-yellow-500 p-3 rounded-xl hover:bg-yellow-400 items-center" onClick={() => {window.location.href = '/Ai'}}>
                   {t("Start Growing Smarter")}
                   <span className="material-symbols-outlined ml-2">arrow_right_alt</span>
                 </button>
